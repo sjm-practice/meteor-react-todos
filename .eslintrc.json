@@ -1,0 +1,35 @@
+{
+  "plugins": [
+    "meteor",
+    "react"
+  ],
+  "extends": [
+    "airbnb",
+    "plugin:meteor/recommended",
+    "plugin:react/recommended"
+  ],
+  "env": {
+    "es6": true
+  },
+  "parserOptions": {
+    "sourceType": "module",
+    "ecmaFeatures": {
+      "jsx": true,
+      "spread": true,
+      "modules": true,
+      "blockBindings": true,
+      "destructuring": true,
+      "arrowFunctions": true
+    }
+  },
+  "rules": {
+    "semi": "error",
+    "no-console": "warn",
+    "quotes": ["error", "double", { "avoidEscape": true, "allowTemplateLiterals": true }],
+    "no-underscore-dangle": ["error", { "allow": ["_id"]}],
+    "react/no-danger": "warn",
+    "react/react-in-jsx-scope": "off",
+    "meteor/eventmap-params": ["error", { "templateInstanceParamName": "instance" }],
+    "import/no-unresolved": ["error", { "ignore": ["^meteor/"] }]
+  }
+}
