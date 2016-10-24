@@ -1,9 +1,9 @@
 import React, { Component } from "react";
 
-import Task from "./Task";
+import Task from "../components/Task";
 
 // App component, represents the whole app
-class App extends Component {
+class AppContainer extends Component {
   getTasks() {
     return [
       { _id: 1, text: "This is task 1" },
@@ -33,4 +33,4 @@ class App extends Component {
   }
 }
 
-export default App;
+export default AppContainer;
