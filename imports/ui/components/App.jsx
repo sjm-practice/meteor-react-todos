@@ -1,8 +1,10 @@
-import React, { PropTypes } from "react";
+import React, {
+  PropTypes,
+} from "react";
 
 import Task from "../components/Task";
 
-function App(props) {
+const App = (props) => {
   const renderedTasks = props.tasks.map((task) => {
     return (
       <Task key={task._id} task={task} />
@@ -20,7 +22,7 @@ function App(props) {
       </ul>
     </div>
   );
-}
+};
 
 App.propTypes = {
   tasks: PropTypes.array.isRequired,
