@@ -1,36 +1,18 @@
-import React, { Component } from "react";
+import { Meteor } from "meteor/meteor";
+import { composeWithTracker } from "react-komposer";
 
-import Task from "../components/Task";
+import Tasks from "../../api/tasks";
+import App from "../components/App";
 
-// App component, represents the whole app
-class AppContainer extends Component {
-  getTasks() {
-    return [
-      { _id: 1, text: "This is task 1" },
-      { _id: 2, text: "This is task 2" },
-      { _id: 3, text: "This is task 3" },
-    ];
+const composer = (props, onData) => {
+  const subscription = Meteor.subscribe("tasks");
+
+  if (subscription.ready()) {
+    const tasks = Tasks.find().fetch();
+    onData(null, { tasks });
   }
+};
 
-  renderTasks() {
-    return this.getTasks().map(task => (
-      <Task key={task._id} task={task} />
-    ));
-  }
-
-  render() {
-    return (
-      <div className="container">
-        <header>
-          <h1>Todo List</h1>
-        </header>
-
-        <ul>
-          {this.renderTasks()}
-        </ul>
-      </div>
-    );
-  }
-}
+const AppContainer = composeWithTracker(composer)(App);
 
 export default AppContainer;
