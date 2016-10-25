@@ -13,6 +13,11 @@ const composer = (props, onData) => {
   }
 };
 
-const AppContainer = composeWithTracker(composer)(App);
+const ContainerBase = composeWithTracker(composer)(App);
+class AppContainer extends ContainerBase {
+  handleSubmit() {
+
+  }
+}
 
 export default AppContainer;
