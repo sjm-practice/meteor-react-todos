@@ -17,10 +17,11 @@ const App = (props) => {
         <h1>Todo List</h1>
       </header>
 
-      <form className="new-task" >
+      <form className="new-task" onSubmit={props.onSubmitTask}>
         <input
           type="text"
           placeholder="Type to add new tasks"
+          onChange={props.onUpdateTask}
         />
       </form>
 
@@ -33,6 +34,8 @@ const App = (props) => {
 
 App.propTypes = {
   tasks: PropTypes.array.isRequired,
+  onUpdateTask: PropTypes.func.isRequired,
+  onSubmitTask: PropTypes.func.isRequired,
 };
 
 export default App;
