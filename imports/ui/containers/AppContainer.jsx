@@ -14,7 +14,7 @@ class AppContainer extends TrackerReact(Component) {
     this.state = {
       task: "",
       subscription: {
-        tasks: Meteor.subscribe('tasks'),
+        tasks: Meteor.subscribe("tasks"),
       },
     };
   }
@@ -25,13 +25,16 @@ class AppContainer extends TrackerReact(Component) {
 
   handleUpdateTask(e) {
     this.setState({
-      task: e.target.value,
+      task: e.target.value.trim(),
     });
   }
 
   handleSubmitTask(e) {
     e.preventDefault();
-    console.log("new task:", this.state.task);
+    const { task } = this.state;
+    this.setState({ task: "" });
+
+    Meteor.call("tasks.insert", task);
   }
 
   render() {
