@@ -14,21 +14,17 @@ class AppContainer extends TrackerReact(Component) {
     this.state = {
       subscription: {
         tasks: Meteor.subscribe('tasks'),
-      }
-    }
+      },
+    };
   }
 
   componentWillUnmount() {
     this.state.subscription.tasks.stop();
   }
 
-  tasks() {
-    return Tasks.find().fetch();
-  }
-
   render() {
     return (
-      <App tasks={this.tasks()} />
+      <App tasks={Tasks.find().fetch()} />
     );
   }
 }
