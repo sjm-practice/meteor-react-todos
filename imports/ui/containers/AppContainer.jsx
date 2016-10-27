@@ -2,13 +2,13 @@ import React, {
   Component,
 } from "react";
 
-import { Meteor } from "meteor/meteor";
-import TrackerReact from "meteor/ultimatejs:tracker-react";
+import { Meteor } from "meteor/meteor"; // eslint-disable-line import/extensions
+import TrackerReact from "meteor/ultimatejs:tracker-react"; // eslint-disable-line import/extensions
 
 import Tasks from "../../api/tasks";
 import App from "../components/App";
 
-class AppContainer extends TrackerReact(Component) {
+class AppContainer extends TrackerReact(Component) { // eslint-disable-line new-cap
   constructor() {
     super();
     this.state = {
