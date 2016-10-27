@@ -21,6 +21,7 @@ const App = (props) => {
         <input
           type="text"
           placeholder="Type to add new tasks"
+          value={props.newTask}
           onChange={props.onUpdateTask}
         />
       </form>
@@ -33,6 +34,7 @@ const App = (props) => {
 };
 
 App.propTypes = {
+  newTask: PropTypes.string.isRequired,
   tasks: PropTypes.array.isRequired,
   onUpdateTask: PropTypes.func.isRequired,
   onSubmitTask: PropTypes.func.isRequired,
