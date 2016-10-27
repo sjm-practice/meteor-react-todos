@@ -5,11 +5,7 @@ import React, {
 import Task from "../components/Task";
 
 const App = (props) => {
-  const renderedTasks = props.tasks.map((task) => {
-    return (
-      <Task key={task._id} task={task} />
-    );
-  });
+  const renderedTasks = props.tasks.map(task => (<Task key={task._id} task={task} />));
 
   return (
     <div className="container">
@@ -35,7 +31,7 @@ const App = (props) => {
 
 App.propTypes = {
   newTask: PropTypes.string.isRequired,
-  tasks: PropTypes.array.isRequired,
+  tasks: PropTypes.arrayOf(PropTypes.string).isRequired,
   onUpdateTask: PropTypes.func.isRequired,
   onSubmitTask: PropTypes.func.isRequired,
 };
