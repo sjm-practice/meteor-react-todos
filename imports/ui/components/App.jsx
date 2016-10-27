@@ -31,7 +31,7 @@ const App = (props) => {
 
 App.propTypes = {
   newTask: PropTypes.string.isRequired,
-  tasks: PropTypes.arrayOf(PropTypes.string).isRequired,
+  tasks: PropTypes.arrayOf(PropTypes.object).isRequired,
   onUpdateTask: PropTypes.func.isRequired,
   onSubmitTask: PropTypes.func.isRequired,
 };

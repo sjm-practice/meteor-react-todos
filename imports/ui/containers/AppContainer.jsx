@@ -43,7 +43,7 @@ class AppContainer extends TrackerReact(Component) { // eslint-disable-line new-
     return (
       <App
         newTask={this.state.newTask}
-        tasks={Tasks.find().fetch()}
+        tasks={Tasks.find({}, { sort: { createdAt: -1 } }).fetch()}
         onUpdateTask={event => this.handleUpdateTask(event)}
         onSubmitTask={event => this.handleSubmitTask(event)}
       />
