@@ -1,18 +1,24 @@
 import React, {
-  Component,
   PropTypes,
 } from "react";
 
-class Task extends Component {
-  render() {
-    return (
-      <li>{this.props.task.text}</li>
-    );
-  }
-}
+const Task = (props) => {
+  const taskClassName = props.task.checked ? "checked" : "";
+
+  return (
+    <li className={taskClassName}>
+      <input
+        type="checkbox"
+        readOnly
+        checked={props.task.checked}
+      />
+      <span className="text">{props.task.text}</span>
+    </li>
+  );
+};
 
 Task.propTypes = {
-  task: PropTypes.object.isRequired,
+  task: PropTypes.object.isRequired, // eslint-disable-line react/forbid-prop-types
 };
 
 export default Task;
