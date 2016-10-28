@@ -2,10 +2,13 @@ import React, {
   PropTypes,
 } from "react";
 
-import Task from "../components/Task";
+import TaskContainer from "../containers/TaskContainer";
 
 const App = (props) => {
-  const renderedTasks = props.tasks.map(task => (<Task key={task._id} task={task} />));
+  const renderedTasks = props.tasks.map(task => (<TaskContainer
+    key={task._id}
+    task={task}
+  />));
 
   return (
     <div className="container">

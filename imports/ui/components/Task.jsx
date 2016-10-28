@@ -10,7 +10,9 @@ const Task = (props) => {
       <input
         type="checkbox"
         readOnly
+        id={props.task._id}
         checked={props.task.checked}
+        onClick={props.onToggleCheckedTask}
       />
       <span className="text">{props.task.text}</span>
     </li>
@@ -19,6 +21,7 @@ const Task = (props) => {
 
 Task.propTypes = {
   task: PropTypes.object.isRequired, // eslint-disable-line react/forbid-prop-types
+  onToggleCheckedTask: PropTypes.func.isRequired,
 };
 
 export default Task;
