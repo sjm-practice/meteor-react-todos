@@ -9,6 +9,8 @@ import Task from "../components/Task";
 
 class TaskContainer extends Component {
 
+  // TODO: manage value of checkbox via state
+
   handleToggleChecked(e) {
     Meteor.call("tasks.setChecked", this.props.task._id, e.target.checked);
   }
