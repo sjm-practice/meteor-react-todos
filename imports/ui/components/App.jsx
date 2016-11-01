@@ -17,7 +17,7 @@ const App = (props) => {
   return (
     <div className="container">
       <header>
-        <h1>Todo List</h1>
+        <h1>Todo List - {props.incompleteCount}</h1>
       </header>
 
       <label htmlFor="hideCompleted" className="hide-completed">
@@ -50,6 +50,7 @@ const App = (props) => {
 App.propTypes = {
   newTask: PropTypes.string.isRequired,
   tasks: PropTypes.arrayOf(PropTypes.object).isRequired,
+  incompleteCount: PropTypes.number.isRequired,
   onUpdateTask: PropTypes.func.isRequired,
   onSubmitTask: PropTypes.func.isRequired,
   hideCompleted: PropTypes.bool.isRequired,

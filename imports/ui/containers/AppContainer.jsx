@@ -49,6 +49,7 @@ class AppContainer extends TrackerContainerComponent {
       <App
         newTask={this.state.newTask}
         tasks={Tasks.find({}, { sort: { createdAt: -1 } }).fetch()}
+        incompleteCount={Tasks.find({ checked: { $ne: true } }).count()}
         onUpdateTask={event => this.handleUpdateTask(event)}
         onSubmitTask={event => this.handleSubmitTask(event)}
         hideCompleted={this.state.hideCompleted}
