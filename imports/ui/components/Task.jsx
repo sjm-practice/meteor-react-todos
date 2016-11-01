@@ -3,7 +3,7 @@ import React, {
 } from "react";
 
 const Task = (props) => {
-  const taskClassName = props.task.checked ? "checked" : "";
+  const taskClassName = props.checked ? "checked" : "";
 
   return (
     <li className={taskClassName}>
@@ -11,7 +11,7 @@ const Task = (props) => {
         type="checkbox"
         readOnly
         id={props.task._id}
-        checked={props.task.checked}
+        checked={props.checked}
         onClick={props.onToggleCheckedTask}
       />
       <span className="text">{props.task.text}</span>
@@ -21,6 +21,7 @@ const Task = (props) => {
 
 Task.propTypes = {
   task: PropTypes.object.isRequired, // eslint-disable-line react/forbid-prop-types
+  checked: PropTypes.bool.isRequired,
   onToggleCheckedTask: PropTypes.func.isRequired,
 };
 
