@@ -19,6 +19,10 @@ Meteor.methods({
 
     Tasks.update(taskId, { $set: { checked: setChecked } });
   },
+  "tasks.remove"(taskId) {
+    check(taskId, String);
+    Tasks.remove(taskId);
+  },
 });
 
 export default Tasks;

@@ -29,7 +29,13 @@ class TaskContainer extends Component {
       checked: e.target.checked,
     });
 
+    // NOTE: passing this.state.checked to this method will result in an
+    //  incorrect value. the setState change may have not completed by this time.
     Meteor.call("tasks.setChecked", this.props.task._id, e.target.checked);
+  }
+
+  handleDeleteTask(e) {
+    Meteor.call("tasks.remove", this.props.task._id);
   }
 
   render() {
@@ -38,6 +44,7 @@ class TaskContainer extends Component {
         task={this.props.task}
         checked={this.state.checked}  // some
         onToggleCheckedTask={event => this.handleToggleChecked(event)}
+        onDeleteTask={event => this.handleDeleteTask(event)}
       />
     );
   }

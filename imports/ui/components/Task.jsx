@@ -7,6 +7,9 @@ const Task = (props) => {
 
   return (
     <li className={taskClassName}>
+      <button className="delete" onClick={props.onDeleteTask}>
+        &times;
+      </button>
       <input
         type="checkbox"
         readOnly
@@ -23,6 +26,7 @@ Task.propTypes = {
   task: PropTypes.object.isRequired, // eslint-disable-line react/forbid-prop-types
   checked: PropTypes.bool.isRequired,
   onToggleCheckedTask: PropTypes.func.isRequired,
+  onDeleteTask: PropTypes.func.isRequired,
 };
 
 export default Task;
