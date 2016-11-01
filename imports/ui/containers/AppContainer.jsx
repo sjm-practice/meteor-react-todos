@@ -14,6 +14,7 @@ class AppContainer extends TrackerContainerComponent {
       subscription: {
         tasks: Meteor.subscribe("tasks"),
       },
+      hideCompleted: false,
     };
   }
 
@@ -37,13 +38,22 @@ class AppContainer extends TrackerContainerComponent {
     Meteor.call("tasks.insert", newTask);
   }
 
+  handleHideCompleted() {
+    this.setState({
+      hideCompleted: !this.state.hideCompleted,
+    });
+  }
+
   render() {
     return (
       <App
         newTask={this.state.newTask}
         tasks={Tasks.find({}, { sort: { createdAt: -1 } }).fetch()}
+        incompleteCount={Tasks.find({ checked: { $ne: true } }).count()}
         onUpdateTask={event => this.handleUpdateTask(event)}
         onSubmitTask={event => this.handleSubmitTask(event)}
+        hideCompleted={this.state.hideCompleted}
+        onHideCompleted={() => this.handleHideCompleted()}
       />
     );
   }

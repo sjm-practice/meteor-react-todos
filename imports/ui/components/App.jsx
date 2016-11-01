@@ -5,16 +5,31 @@ import React, {
 import TaskContainer from "../containers/TaskContainer";
 
 const App = (props) => {
-  const renderedTasks = props.tasks.map(task => (<TaskContainer
-    key={task._id}
-    task={task}
-  />));
+  let filteredTasks = props.tasks;
+  if (props.hideCompleted) {
+    filteredTasks = filteredTasks.filter(task => !task.checked);
+  }
+
+  const renderedTasks = filteredTasks.map(task => (
+    <TaskContainer key={task._id} task={task} />
+  ));
 
   return (
     <div className="container">
       <header>
-        <h1>Todo List</h1>
+        <h1>Todo List - {props.incompleteCount}</h1>
       </header>
+
+      <label htmlFor="hideCompleted" className="hide-completed">
+        <input
+          id="hideCompleted"
+          type="checkbox"
+          readOnly
+          checked={props.hideCompleted}
+          onClick={props.onHideCompleted}
+        />
+        Hide Completed Tasks
+      </label>
 
       <form className="new-task" onSubmit={props.onSubmitTask}>
         <input
@@ -35,8 +50,11 @@ const App = (props) => {
 App.propTypes = {
   newTask: PropTypes.string.isRequired,
   tasks: PropTypes.arrayOf(PropTypes.object).isRequired,
+  incompleteCount: PropTypes.number.isRequired,
   onUpdateTask: PropTypes.func.isRequired,
   onSubmitTask: PropTypes.func.isRequired,
+  hideCompleted: PropTypes.bool.isRequired,
+  onHideCompleted: PropTypes.func.isRequired,
 };
 
 export default App;
