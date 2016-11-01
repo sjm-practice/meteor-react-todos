@@ -1,14 +1,12 @@
-import React, {
-  Component,
-} from "react";
+import React from "react";
 
 import { Meteor } from "meteor/meteor"; // eslint-disable-line import/extensions
-import TrackerReact from "meteor/ultimatejs:tracker-react"; // eslint-disable-line import/extensions
+import TrackerContainerComponent from "./TrackerContainerComponent";
 
 import Tasks from "../../api/tasks";
 import App from "../components/App";
 
-class AppContainer extends TrackerReact(Component) { // eslint-disable-line new-cap
+class AppContainer extends TrackerContainerComponent {
   constructor() {
     super();
     this.state = {
@@ -43,7 +41,7 @@ class AppContainer extends TrackerReact(Component) { // eslint-disable-line new-
     return (
       <App
         newTask={this.state.newTask}
-        tasks={Tasks.find().fetch()}
+        tasks={Tasks.find({}, { sort: { createdAt: -1 } }).fetch()}
         onUpdateTask={event => this.handleUpdateTask(event)}
         onSubmitTask={event => this.handleSubmitTask(event)}
       />
