@@ -8,11 +8,15 @@ Meteor.methods({
   "tasks.insert"(text) {
     check(text, String);
 
+    if (!this.userId) {
+      throw new Meteor.Error("not-authorized");
+    }
+
     Tasks.insert({
       text,
       createdAt: new Date(),
-      owner: Meteor.userId(),
-      username: Meteor.user().username,
+      owner: this.userId,
+      username: Meteor.users.findOne(this.userId).username,
     });
   },
   "tasks.setChecked"(taskId, setChecked) {
