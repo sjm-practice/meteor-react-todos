@@ -11,6 +11,8 @@ Meteor.methods({
     Tasks.insert({
       text,
       createdAt: new Date(),
+      owner: Meteor.userId(),
+      username: Meteor.user().username,
     });
   },
   "tasks.setChecked"(taskId, setChecked) {
