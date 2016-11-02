@@ -3,6 +3,7 @@ import React, {
 } from "react";
 
 import TaskContainer from "../containers/TaskContainer";
+import AccountsUIWrapper from "./AccountsUIWrapper";
 
 const App = (props) => {
   let filteredTasks = props.tasks;
@@ -30,6 +31,8 @@ const App = (props) => {
         />
         Hide Completed Tasks
       </label>
+
+      <AccountsUIWrapper/>
 
       <form className="new-task" onSubmit={props.onSubmitTask}>
         <input
