@@ -54,6 +54,7 @@ class AppContainer extends TrackerContainerComponent {
         onSubmitTask={event => this.handleSubmitTask(event)}
         hideCompleted={this.state.hideCompleted}
         onHideCompleted={() => this.handleHideCompleted()}
+        currentUser={Meteor.user()}
       />
     );
   }
