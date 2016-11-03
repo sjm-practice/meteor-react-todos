@@ -21,3 +21,5 @@ ultimatejs:tracker-react
 blaze-html-templates
 accounts-ui
 accounts-password
+mdg:validated-method
+aldeed:simple-schema
