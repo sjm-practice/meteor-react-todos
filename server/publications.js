@@ -1,5 +1,4 @@
+import { Meteor } from "meteor/meteor";
 import Tasks from "../imports/api/tasks";
 
-Meteor.publish("tasks", function () {
-  return Tasks.find();
-});
+Meteor.publish("tasks", () => Tasks.find());
