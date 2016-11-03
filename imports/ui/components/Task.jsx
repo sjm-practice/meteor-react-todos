@@ -17,7 +17,9 @@ const Task = (props) => {
         checked={props.checked}
         onClick={props.onToggleCheckedTask}
       />
-      <span className="text">{props.task.text}</span>
+      <span className="text">
+        <strong>{props.task.username}</strong>: {props.task.text}
+      </span>
     </li>
   );
 };
