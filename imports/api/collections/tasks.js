@@ -1,6 +1,5 @@
 import { Mongo } from "meteor/mongo";
 import { Meteor } from "meteor/meteor";
-import { check } from "meteor/check";
 import { SimpleSchema } from "meteor/aldeed:simple-schema";
 import { ValidatedMethod } from "meteor/mdg:validated-method";
 
@@ -57,5 +56,24 @@ export const remove = new ValidatedMethod({
 
   run({ taskId }) {
     Tasks.remove(taskId);
+  },
+});
+
+export const setPrivate = new ValidatedMethod({
+  name: "tasks.setPrivate",
+
+  validate: new SimpleSchema({
+    taskId: { type: String },
+    setToPrivate: { type: Boolean },
+  }).validator(),
+
+  run({ taskId, setToPrivate }) {
+    const task = Tasks.findOne(taskId);
+
+    if (task.owner !== this.userId) {
+      throw new Meteor.Error("not-authorized");
+    }
+
+    Tasks.update(taskId, { $set: { private: setToPrivate } });
   },
 });
