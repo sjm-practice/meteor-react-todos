@@ -5,6 +5,7 @@ import { SimpleSchema } from "meteor/aldeed:simple-schema";
 import { ValidatedMethod } from "meteor/mdg:validated-method";
 
 const Tasks = new Mongo.Collection("tasks");
+export default Tasks;
 
 const TaskInsertSchema = new SimpleSchema({
   text: {
@@ -16,7 +17,9 @@ const TaskInsertSchema = new SimpleSchema({
 
 export const insertTask = new ValidatedMethod({
   name: "tasks.insert",
+
   validate: TaskInsertSchema.validator(),
+
   run({ text }) {
     if (!this.userId) {
       throw new Meteor.Error("not-authorized");
@@ -31,18 +34,23 @@ export const insertTask = new ValidatedMethod({
   },
 });
 
-// Providing methods definition on both client and server, supports optimistic UI updates
-Meteor.methods({
-  "tasks.setChecked"(taskId, setChecked) {
-    check(taskId, String);
-    check(setChecked, Boolean);
+export const setChecked = new ValidatedMethod({
+  name: "tasks.setChecked",
 
+  validate: new SimpleSchema({
+    taskId: { type: String },
+    setChecked: { type: Boolean },
+  }).validator(),
+
+  run({ taskId, setChecked }) {
     Tasks.update(taskId, { $set: { checked: setChecked } });
   },
+});
+
+// Providing methods definition on both client and server, supports optimistic UI updates
+Meteor.methods({
   "tasks.remove"(taskId) {
     check(taskId, String);
     Tasks.remove(taskId);
   },
 });
-
-export default Tasks;

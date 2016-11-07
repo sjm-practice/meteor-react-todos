@@ -4,6 +4,7 @@ import React, {
 } from "react";
 
 import { Meteor } from "meteor/meteor"; // eslint-disable-line import/extensions
+import { setChecked } from "../../api/collections/tasks";
 
 import Task from "../components/Task";
 
@@ -31,7 +32,11 @@ class TaskContainer extends Component {
 
     // NOTE: passing this.state.checked to this method will result in an
     //  incorrect value. the setState change may have not completed by this time.
-    Meteor.call("tasks.setChecked", this.props.task._id, e.target.checked);
+    setChecked.call({ taskId: this.props.task._id, setChecked: e.target.checked }, (err) => {
+      if (err) {
+        alert(err);
+      }
+    });
   }
 
   handleDeleteTask(e) {
