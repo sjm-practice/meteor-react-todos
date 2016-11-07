@@ -48,9 +48,14 @@ export const setChecked = new ValidatedMethod({
 });
 
 // Providing methods definition on both client and server, supports optimistic UI updates
-Meteor.methods({
-  "tasks.remove"(taskId) {
-    check(taskId, String);
+export const remove = new ValidatedMethod({
+  name: "tasks.remove",
+
+  validate: new SimpleSchema({
+    taskId: { type: String },
+  }).validator(),
+
+  run({ taskId }) {
     Tasks.remove(taskId);
   },
 });

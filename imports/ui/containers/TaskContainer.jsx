@@ -4,7 +4,7 @@ import React, {
 } from "react";
 
 import { Meteor } from "meteor/meteor"; // eslint-disable-line import/extensions
-import { setChecked } from "../../api/collections/tasks";
+import { setChecked, remove } from "../../api/collections/tasks";
 
 import Task from "../components/Task";
 
@@ -40,7 +40,11 @@ class TaskContainer extends Component {
   }
 
   handleDeleteTask(e) {
-    Meteor.call("tasks.remove", this.props.task._id);
+    remove.call({ taskId: this.props.task._id }, (err) => {
+      if (err) {
+        alert(err);
+      }
+    });
   }
 
   render() {
