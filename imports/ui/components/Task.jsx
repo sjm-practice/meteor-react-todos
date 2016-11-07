@@ -25,7 +25,11 @@ const Task = (props) => {
 };
 
 Task.propTypes = {
-  task: PropTypes.object.isRequired, // eslint-disable-line react/forbid-prop-types
+  task: PropTypes.shape({
+    _id: PropTypes.string.isRequired,
+    username: PropTypes.string.isRequired,
+    text: PropTypes.string.isRequired,
+  }).isRequired,
   checked: PropTypes.bool.isRequired,
   onToggleCheckedTask: PropTypes.func.isRequired,
   onDeleteTask: PropTypes.func.isRequired,

@@ -54,13 +54,13 @@ const App = (props) => {
 
 App.propTypes = {
   newTask: PropTypes.string.isRequired,
-  tasks: PropTypes.arrayOf(PropTypes.object).isRequired,
+  tasks: PropTypes.arrayOf(PropTypes.object).isRequired, // eslint-disable-line react/forbid-prop-types, max-len
   incompleteCount: PropTypes.number.isRequired,
   onUpdateTask: PropTypes.func.isRequired,
   onSubmitTask: PropTypes.func.isRequired,
   hideCompleted: PropTypes.bool.isRequired,
   onHideCompleted: PropTypes.func.isRequired,
-  currentUser: PropTypes.object,
+  currentUser: PropTypes.object,   // eslint-disable-line react/forbid-prop-types
 };
 
 export default App;

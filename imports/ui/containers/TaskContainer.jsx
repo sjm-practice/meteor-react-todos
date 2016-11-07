@@ -60,7 +60,10 @@ class TaskContainer extends Component {
 }
 
 TaskContainer.propTypes = {
-  task: PropTypes.object.isRequired, // eslint-disable-line react/forbid-prop-types
+  task: PropTypes.shape({
+    _id: PropTypes.string.isRequired,
+    checked: PropTypes.bool,
+  }).isRequired,
 };
 
 export default TaskContainer;
