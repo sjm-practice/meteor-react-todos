@@ -11,9 +11,16 @@ const App = (props) => {
     filteredTasks = filteredTasks.filter(task => !task.checked);
   }
 
-  const renderedTasks = filteredTasks.map(task => (
-    <TaskContainer key={task._id} task={task}/>
-  ));
+  const renderedTasks = filteredTasks.map((task) => {
+    const currentUserId = props.currentUser && props.currentUser._id;
+    const showPrivateButton = currentUserId === task.owner;
+
+    return (<TaskContainer
+      key={task._id}
+      task={task}
+      showPrivateButton={showPrivateButton}
+    />);
+  });
 
   return (
     <div className="container">

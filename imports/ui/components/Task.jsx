@@ -10,6 +10,7 @@ const Task = (props) => {
       <button className="delete" onClick={props.onDeleteTask}>
         &times;
       </button>
+
       <input
         type="checkbox"
         readOnly
@@ -17,6 +18,13 @@ const Task = (props) => {
         checked={props.checked}
         onClick={props.onToggleCheckedTask}
       />
+
+      { props.showPrivateButton ? (
+        <button className="toggle-private" onClick={props.onTogglePrivate}>
+          { props.task.private ? "Private" : "Public" }
+        </button>
+      ) : ""}
+
       <span className="text">
         <strong>{props.task.username}</strong>: {props.task.text}
       </span>
@@ -29,10 +37,13 @@ Task.propTypes = {
     _id: PropTypes.string.isRequired,
     username: PropTypes.string.isRequired,
     text: PropTypes.string.isRequired,
+    private: PropTypes.bool,
   }).isRequired,
   checked: PropTypes.bool.isRequired,
   onToggleCheckedTask: PropTypes.func.isRequired,
   onDeleteTask: PropTypes.func.isRequired,
+  showPrivateButton: PropTypes.bool.isRequired,
+  onTogglePrivate: PropTypes.func.isRequired,
 };
 
 export default Task;

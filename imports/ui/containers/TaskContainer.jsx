@@ -3,7 +3,7 @@ import React, {
   PropTypes,
 } from "react";
 
-import { setCompleted, remove } from "../../api/collections/tasks";
+import { setCompleted, remove, setPrivate } from "../../api/collections/tasks";
 
 import Task from "../components/Task";
 
@@ -46,6 +46,15 @@ class TaskContainer extends Component {
     });
   }
 
+  handleTogglePrivate() {
+    setPrivate.call({ taskId: this.props.task._id, setToPrivate: !this.props.task.private },
+      (err) => {
+        if (err) {
+          alert(err);
+        }
+    });
+  }
+
   render() {
     return (
       <Task
@@ -53,6 +62,8 @@ class TaskContainer extends Component {
         checked={this.state.checked}  // some
         onToggleCheckedTask={event => this.handleToggleChecked(event)}
         onDeleteTask={event => this.handleDeleteTask(event)}
+        showPrivateButton={this.props.showPrivateButton}
+        onTogglePrivate={() => this.handleTogglePrivate()}
       />
     );
   }
@@ -62,7 +73,9 @@ TaskContainer.propTypes = {
   task: PropTypes.shape({
     _id: PropTypes.string.isRequired,
     checked: PropTypes.bool,
+    private: PropTypes.bool,
   }).isRequired,
+  showPrivateButton: PropTypes.bool.isRequired,
 };
 
 export default TaskContainer;
