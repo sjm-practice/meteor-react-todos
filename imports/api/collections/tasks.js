@@ -33,8 +33,8 @@ export const insertTask = new ValidatedMethod({
   },
 });
 
-export const setChecked = new ValidatedMethod({
-  name: "tasks.setChecked",
+export const setCompleted = new ValidatedMethod({
+  name: "tasks.setCompleted",
 
   validate: new SimpleSchema({
     taskId: { type: String },
