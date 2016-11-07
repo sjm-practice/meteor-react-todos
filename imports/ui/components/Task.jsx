@@ -1,9 +1,13 @@
 import React, {
   PropTypes,
 } from "react";
+import classnames from "classnames";
 
 const Task = (props) => {
-  const taskClassName = props.checked ? "checked" : "";
+  const taskClassName = classnames({
+    checked: props.checked,
+    private: props.task.private,
+  });
 
   return (
     <li className={taskClassName}>
