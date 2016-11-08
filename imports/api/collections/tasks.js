@@ -40,6 +40,11 @@ export const setCompleted = new ValidatedMethod({
   }).validator(),
 
   run({ taskId, setChecked }) {
+    const task = Tasks.findOne(taskId);
+    if (task.private && task.owner !== this.userId) {
+      throw new Meteor.Error("not-authorized");
+    }
+
     Tasks.update(taskId, { $set: { checked: setChecked } });
   },
 });
@@ -53,6 +58,12 @@ export const remove = new ValidatedMethod({
   }).validator(),
 
   run({ taskId }) {
+    const task = Tasks.findOne(taskId);
+    console.log("found:", task);
+    if (task.private && task.owner !== this.userId) {
+      throw new Meteor.Error("not-authorized");
+    }
+
     Tasks.remove(taskId);
   },
 });
