@@ -5,7 +5,7 @@ import classnames from "classnames";
 
 const Task = (props) => {
   const taskClassName = classnames({
-    checked: props.checked,
+    checked: props.task.checked,
     private: props.task.private,
   });
 
@@ -18,8 +18,7 @@ const Task = (props) => {
       <input
         type="checkbox"
         readOnly
-        id={props.task._id}
-        checked={props.checked}
+        checked={props.task.checked}
         onClick={props.onToggleCheckedTask}
       />
 
@@ -42,8 +41,8 @@ Task.propTypes = {
     username: PropTypes.string.isRequired,
     text: PropTypes.string.isRequired,
     private: PropTypes.bool,
+    checked: PropTypes.bool,
   }).isRequired,
-  checked: PropTypes.bool.isRequired,
   onToggleCheckedTask: PropTypes.func.isRequired,
   onDeleteTask: PropTypes.func.isRequired,
   showPrivateButton: PropTypes.bool.isRequired,

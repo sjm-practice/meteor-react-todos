@@ -8,36 +8,16 @@ import { setCompleted, remove, setPrivate } from "../../api/collections/tasks";
 import Task from "../components/Task";
 
 class TaskContainer extends Component {
-
-  // TODO: manage value of checkbox via state
-  constructor() {
-    super();
-    this.state = {
-      checked: false,
-    };
+  handleToggleChecked() {
+    setCompleted.call({ taskId: this.props.task._id, setChecked: !this.props.task.checked },
+      (err) => {
+        if (err) {
+          alert(err);
+        }
+      });
   }
 
-  componentWillMount() {
-    this.setState({
-      checked: !!this.props.task.checked,
-    });
-  }
-
-  handleToggleChecked(e) {
-    this.setState({
-      checked: e.target.checked,
-    });
-
-    // NOTE: passing this.state.checked to this method will result in an
-    //  incorrect value. the setState change may have not completed by this time.
-    setCompleted.call({ taskId: this.props.task._id, setChecked: e.target.checked }, (err) => {
-      if (err) {
-        alert(err);
-      }
-    });
-  }
-
-  handleDeleteTask(e) {
+  handleDeleteTask() {
     remove.call({ taskId: this.props.task._id }, (err) => {
       if (err) {
         alert(err);
@@ -51,16 +31,15 @@ class TaskContainer extends Component {
         if (err) {
           alert(err);
         }
-    });
+      });
   }
 
   render() {
     return (
       <Task
         task={this.props.task}
-        checked={this.state.checked}  // some
-        onToggleCheckedTask={event => this.handleToggleChecked(event)}
-        onDeleteTask={event => this.handleDeleteTask(event)}
+        onToggleCheckedTask={() => this.handleToggleChecked()}
+        onDeleteTask={() => this.handleDeleteTask()}
         showPrivateButton={this.props.showPrivateButton}
         onTogglePrivate={() => this.handleTogglePrivate()}
       />
