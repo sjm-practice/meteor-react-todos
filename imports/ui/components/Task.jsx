@@ -1,15 +1,20 @@
 import React, {
   PropTypes,
 } from "react";
+import classnames from "classnames";
 
 const Task = (props) => {
-  const taskClassName = props.checked ? "checked" : "";
+  const taskClassName = classnames({
+    checked: props.checked,
+    private: props.task.private,
+  });
 
   return (
     <li className={taskClassName}>
       <button className="delete" onClick={props.onDeleteTask}>
         &times;
       </button>
+
       <input
         type="checkbox"
         readOnly
@@ -17,6 +22,13 @@ const Task = (props) => {
         checked={props.checked}
         onClick={props.onToggleCheckedTask}
       />
+
+      { props.showPrivateButton ? (
+        <button className="toggle-private" onClick={props.onTogglePrivate}>
+          { props.task.private ? "Private" : "Public" }
+        </button>
+      ) : ""}
+
       <span className="text">
         <strong>{props.task.username}</strong>: {props.task.text}
       </span>
@@ -25,10 +37,17 @@ const Task = (props) => {
 };
 
 Task.propTypes = {
-  task: PropTypes.object.isRequired, // eslint-disable-line react/forbid-prop-types
+  task: PropTypes.shape({
+    _id: PropTypes.string.isRequired,
+    username: PropTypes.string.isRequired,
+    text: PropTypes.string.isRequired,
+    private: PropTypes.bool,
+  }).isRequired,
   checked: PropTypes.bool.isRequired,
   onToggleCheckedTask: PropTypes.func.isRequired,
   onDeleteTask: PropTypes.func.isRequired,
+  showPrivateButton: PropTypes.bool.isRequired,
+  onTogglePrivate: PropTypes.func.isRequired,
 };
 
 export default Task;

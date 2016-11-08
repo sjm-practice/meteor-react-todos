@@ -3,7 +3,7 @@ import React from "react";
 import { Meteor } from "meteor/meteor"; // eslint-disable-line import/extensions
 import TrackerContainerComponent from "./TrackerContainerComponent";
 
-import Tasks from "../../api/tasks";
+import Tasks, { insertTask } from "../../api/collections/tasks";
 import App from "../components/App";
 
 class AppContainer extends TrackerContainerComponent {
@@ -35,7 +35,12 @@ class AppContainer extends TrackerContainerComponent {
       newTask: "",
     });
 
-    Meteor.call("tasks.insert", newTask);
+    // can call insertTask.validate() if you wish to prevent an unnecessary server call
+    insertTask.call({ text: newTask }, (err) => {
+      if (err) {
+        alert(err);
+      }
+    });
   }
 
   handleHideCompleted() {
