@@ -23,7 +23,6 @@ class TaskContainer extends Component {
     });
   }
 
-
   handleToggleChecked(e) {
     this.setState({
       checked: e.target.checked,
