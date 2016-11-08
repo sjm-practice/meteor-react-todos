@@ -3,7 +3,8 @@
   "private": true,
   "scripts": {
     "lint": "./node_modules/.bin/eslint . --ignore-pattern 'packages/**'",
-    "start": "meteor run"
+    "start": "meteor run",
+    "test": "meteor test --driver-package practicalmeteor:mocha"
   },
   "dependencies": {
     "bcrypt": "^0.8.7",
