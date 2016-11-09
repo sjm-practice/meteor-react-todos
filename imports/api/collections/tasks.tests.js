@@ -4,14 +4,13 @@ import { Meteor } from "meteor/meteor";
 import { Random } from "meteor/random";
 import { expect } from "meteor/practicalmeteor:chai";
 
-import Tasks from "./tasks";
+import Tasks, { removeTask } from "./tasks";
 
 describe("Tasks", () => {
   if (Meteor.isServer) {
     describe("methods", () => {
       const userId = Random.id();
       let taskId;
-      const deleteTask = Meteor.server.method_handlers["tasks.remove"];
 
       beforeEach(() => {
         Tasks.remove({});
@@ -25,16 +24,21 @@ describe("Tasks", () => {
       });
 
       it("can delete owned task", () => {
-        const thisArg = { userId };
-        deleteTask.call(thisArg, { taskId });
+        const context = { userId };
+        const args = { taskId };
+        // NOTE: can execute a ValidatedMethod via _execute (per ValidateMethod docs)
+        removeTask._execute(context, args);
 
         expect(Tasks.find().count()).to.equal(0);
       });
 
       it("can not delete someone else's task", () => {
-        const thisArg = { userId: "differentUserId" };
+        const context = { userId: "differentUserId" };  // aka this
+        const args = { taskId };
+        // NOTE: can use this method handler lookup, or _execute style above
+        const removeTaskMethod = Meteor.server.method_handlers["tasks.remove"];
 
-        expect(deleteTask.bind(thisArg, { taskId })).to.throw(/not-authorized/);
+        expect(removeTaskMethod.bind(context, args)).to.throw(/not-authorized/);
       });
     });
   }
