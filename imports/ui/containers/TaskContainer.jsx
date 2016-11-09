@@ -3,7 +3,7 @@ import React, {
   PropTypes,
 } from "react";
 
-import { setCompleted, remove, setPrivate } from "../../api/collections/tasks";
+import { setCompleted, removeTask, setPrivate } from "../../api/collections/tasks";
 
 import Task from "../components/Task";
 
@@ -18,7 +18,7 @@ class TaskContainer extends Component {
   }
 
   handleDeleteTask() {
-    remove.call({ taskId: this.props.task._id }, (err) => {
+    removeTask.call({ taskId: this.props.task._id }, (err) => {
       if (err) {
         alert(err);
       }

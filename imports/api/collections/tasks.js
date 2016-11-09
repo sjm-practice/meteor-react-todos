@@ -50,7 +50,7 @@ export const setCompleted = new ValidatedMethod({
 });
 
 // Providing methods definition on both client and server, supports optimistic UI updates
-export const remove = new ValidatedMethod({
+export const removeTask = new ValidatedMethod({
   name: "tasks.remove",
 
   validate: new SimpleSchema({
@@ -59,7 +59,6 @@ export const remove = new ValidatedMethod({
 
   run({ taskId }) {
     const task = Tasks.findOne(taskId);
-    console.log("found:", task);
     if (task.private && task.owner !== this.userId) {
       throw new Meteor.Error("not-authorized");
     }
