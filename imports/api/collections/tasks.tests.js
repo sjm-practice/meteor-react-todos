@@ -6,8 +6,8 @@ import { expect } from "meteor/practicalmeteor:chai";
 
 import Tasks from "./tasks";
 
-if (Meteor.isServer) {
-  describe("Tasks", () => {
+describe("Tasks", () => {
+  if (Meteor.isServer) {
     describe("methods", () => {
       const userId = Random.id();
       let taskId;
@@ -37,5 +37,12 @@ if (Meteor.isServer) {
         expect(deleteTask.bind(thisArg, { taskId })).to.throw(/not-authorized/);
       });
     });
-  });
-}
+  }
+
+  if (Meteor.isClient) {
+    describe("client method call", () => {
+      it("runs a test on the client", () => {
+      });
+    });
+  }
+});

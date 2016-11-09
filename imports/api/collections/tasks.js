@@ -63,7 +63,7 @@ export const removeTask = new ValidatedMethod({
       throw new Meteor.Error("not-authorized");
     }
 
-  Tasks.remove(taskId);
+    Tasks.remove(taskId);
   },
 });
 
