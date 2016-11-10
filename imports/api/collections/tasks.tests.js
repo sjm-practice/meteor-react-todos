@@ -1,4 +1,5 @@
 /* eslint-env mocha */
+/* eslint-disable func-names, prefer-arrow-callback */
 
 import { Meteor } from "meteor/meteor";
 import { Random } from "meteor/random";
@@ -6,13 +7,13 @@ import { expect } from "meteor/practicalmeteor:chai";
 
 import Tasks, { removeTask } from "./tasks";
 
-describe("Tasks", () => {
+describe("Tasks", function () {
   if (Meteor.isServer) {
-    describe("methods", () => {
+    describe("methods", function () {
       const userId = Random.id();
       let taskId;
 
-      beforeEach(() => {
+      beforeEach(function () {
         Tasks.remove({});
         taskId = Tasks.insert({
           text: "test task",
@@ -23,7 +24,7 @@ describe("Tasks", () => {
         });
       });
 
-      it("can delete owned task", () => {
+      it("can delete owned task", function () {
         const context = { userId };
         const args = { taskId };
         // NOTE: can execute a ValidatedMethod via _execute (per ValidateMethod docs)
@@ -32,7 +33,7 @@ describe("Tasks", () => {
         expect(Tasks.find().count()).to.equal(0);
       });
 
-      it("can not delete someone else's task", () => {
+      it("can not delete someone else's task", function () {
         const context = { userId: "differentUserId" };  // aka this
         const args = { taskId };
         // NOTE: can use this method handler lookup, or _execute style above
@@ -44,8 +45,8 @@ describe("Tasks", () => {
   }
 
   if (Meteor.isClient) {
-    describe("client method call", () => {
-      it("runs a test on the client", () => {
+    describe("client method call", function () {
+      it("can not update 'completed' of someone else's task", function () {
       });
     });
   }
