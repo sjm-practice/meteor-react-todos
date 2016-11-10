@@ -24,3 +24,5 @@ accounts-password@1.3.2
 mdg:validated-method
 aldeed:simple-schema
 practicalmeteor:mocha
+dispatch:mocha-phantomjs
+aldeed:collection2

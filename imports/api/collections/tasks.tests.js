@@ -33,7 +33,7 @@ describe("Tasks", function () {
         expect(Tasks.find().count()).to.equal(0);
       });
 
-      it("can not delete someone else's task", function () {
+      it("prevent delete of someone else's task", function () {
         const context = { userId: "differentUserId" };  // aka this
         const args = { taskId };
         // NOTE: can use this method handler lookup, or _execute style above
@@ -46,7 +46,7 @@ describe("Tasks", function () {
 
   if (Meteor.isClient) {
     describe("client method call", function () {
-      it("can not update 'completed' of someone else's task", function () {
+      it("prevent updating 'completed' of someone else's task", function () {
       });
     });
   }

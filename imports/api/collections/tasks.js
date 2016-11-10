@@ -6,16 +6,38 @@ import { ValidatedMethod } from "meteor/mdg:validated-method";
 const Tasks = new Mongo.Collection("tasks");
 export default Tasks;
 
+Tasks.schema = new SimpleSchema({
+  text: {
+    type: String,
+    max: 200,
+  },
+  createdAt: {
+    type: Date,
+  },
+  owner: {
+    type: String,
+  },
+  username: {
+    type: String,
+  },
+  checked: {
+    type: Boolean,
+    optional: true,
+    defaultValue: false,
+  },
+  private: {
+    type: Boolean,
+    optional: true,
+    defaultValue: false,
+  },
+});
+
+Tasks.attachSchema(Tasks.schema);
+
 export const insertTask = new ValidatedMethod({
   name: "tasks.insert",
 
-  validate: new SimpleSchema({
-    text: {
-      type: String,
-      label: "Text",
-      max: 200,
-    },
-  }).validator(),
+  validate: Tasks.schema.pick(["text"]).validator(),
 
   run({ text }) {
     if (!this.userId) {
