@@ -9,7 +9,7 @@ import Task from "../components/Task";
 
 class TaskContainer extends Component {
   handleToggleChecked() {
-    setCompleted.call({ taskId: this.props.task._id, setChecked: !this.props.task.checked },
+    setCompleted.call({ taskId: this.props.task._id, checked: !this.props.task.checked },
       (err) => {
         if (err) {
           alert(err);

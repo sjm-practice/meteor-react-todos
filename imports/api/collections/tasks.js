@@ -58,16 +58,16 @@ export const setCompleted = new ValidatedMethod({
 
   validate: new SimpleSchema({
     taskId: { type: String },
-    setChecked: { type: Boolean },
+    checked: { type: Boolean }, // NOTE 'checked' not optional here, unlike schema
   }).validator(),
 
-  run({ taskId, setChecked }) {
+  run({ taskId, checked }) {
     const task = Tasks.findOne(taskId);
     if (task.private && task.owner !== this.userId) {
       throw new Meteor.Error("not-authorized");
     }
 
-    Tasks.update(taskId, { $set: { checked: setChecked } });
+    Tasks.update(taskId, { $set: { checked } });
   },
 });
 
