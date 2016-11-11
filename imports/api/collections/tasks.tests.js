@@ -1,9 +1,9 @@
 /* eslint-env mocha */
 /* eslint-disable func-names, prefer-arrow-callback */
 
+import { expect } from "meteor/practicalmeteor:chai";
 import { Meteor } from "meteor/meteor";
 import { Random } from "meteor/random";
-import { expect } from "meteor/practicalmeteor:chai";
 
 import Tasks, { removeTask } from "./tasks";
 
@@ -40,13 +40,6 @@ describe("Tasks", function () {
         const removeTaskMethod = Meteor.server.method_handlers["tasks.remove"];
 
         expect(removeTaskMethod.bind(context, args)).to.throw(/not-authorized/);
-      });
-    });
-  }
-
-  if (Meteor.isClient) {
-    describe("client method call", function () {
-      it("prevent updating 'completed' of someone else's task", function () {
       });
     });
   }

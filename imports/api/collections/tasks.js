@@ -63,6 +63,10 @@ export const setCompleted = new ValidatedMethod({
 
   run({ taskId, checked }) {
     const task = Tasks.findOne(taskId);
+    if (!task) {
+      throw new Meteor.Error("not-found");
+    }
+
     if (task.private && task.owner !== this.userId) {
       throw new Meteor.Error("not-authorized");
     }
@@ -81,6 +85,10 @@ export const removeTask = new ValidatedMethod({
 
   run({ taskId }) {
     const task = Tasks.findOne(taskId);
+    if (!task) {
+      throw new Meteor.Error("not-found");
+    }
+
     if (task.private && task.owner !== this.userId) {
       throw new Meteor.Error("not-authorized");
     }
@@ -99,6 +107,9 @@ export const setPrivate = new ValidatedMethod({
 
   run({ taskId, setToPrivate }) {
     const task = Tasks.findOne(taskId);
+    if (!task) {
+      throw new Meteor.Error("not-found");
+    }
 
     if (task.owner !== this.userId) {
       throw new Meteor.Error("not-authorized");
