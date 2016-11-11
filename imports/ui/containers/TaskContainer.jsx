@@ -3,7 +3,7 @@ import React, {
   PropTypes,
 } from "react";
 
-import { setCompleted, removeTask, setPrivate } from "../../api/collections/tasks";
+import { setCompleted, removeTask, setPrivate } from "../../api/tasks/tasks";
 
 import Task from "../components/Task";
 

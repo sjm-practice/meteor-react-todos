@@ -3,7 +3,8 @@ import React from "react";
 import { Meteor } from "meteor/meteor"; // eslint-disable-line import/extensions
 import TrackerContainerComponent from "./TrackerContainerComponent";
 
-import Tasks, { insertTask } from "../../api/collections/tasks";
+import Tasks from "../../api/tasks/tasks";
+import { insertTask } from "../../api/tasks/methods";
 import App from "../components/App";
 
 class AppContainer extends TrackerContainerComponent {
