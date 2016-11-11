@@ -3,6 +3,8 @@ import { SimpleSchema } from "meteor/aldeed:simple-schema";
 import { ValidatedMethod } from "meteor/mdg:validated-method";
 import Tasks from "./tasks";
 
+// Providing method definitions on both client and server, supports optimistic UI updates
+
 export const insertTask = new ValidatedMethod({
   name: "tasks.insert",
 
@@ -44,7 +46,6 @@ export const setCompleted = new ValidatedMethod({
   },
 });
 
-// Providing methods definition on both client and server, supports optimistic UI updates
 export const removeTask = new ValidatedMethod({
   name: "tasks.remove",
 
