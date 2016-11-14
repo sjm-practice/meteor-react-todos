@@ -33,8 +33,13 @@ export const setCompleted = new ValidatedMethod({
   }).validator(),
 
   run({ taskId, checked }) {
+    if (Meteor.isServer) {
+      console.log("requested id:", taskId);
+    }
     const task = Tasks.findOne(taskId);
+    console.log("task:", task);
     if (!task) {
+      console.log("for real?");
       throw new Meteor.Error("not-found");
     }
 

@@ -26,3 +26,5 @@ aldeed:simple-schema
 practicalmeteor:mocha
 dispatch:mocha-phantomjs
 aldeed:collection2
+dburles:factory
+promise

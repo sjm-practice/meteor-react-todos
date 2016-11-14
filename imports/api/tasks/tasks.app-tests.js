@@ -3,24 +3,9 @@
 
 import { expect } from "meteor/practicalmeteor:chai";
 import { Meteor } from "meteor/meteor";
-import { ValidatedMethod } from "meteor/mdg:validated-method";
+import { generateData } from "./generate-data.app-tests";
 
-import Tasks from "./tasks";
 import { setCompleted } from "./methods";
-
-const testInsertTask = new ValidatedMethod({
-  name: "test.tasks.insert",
-  validate: Tasks.schema.pick(["text", "owner", "username"]).validator(),
-  run({ text, owner, username }) {
-    Tasks.remove({});
-    return Tasks.insert({
-      text,
-      createdAt: new Date(),
-      owner,
-      username,
-    });
-  },
-});
 
 describe("Tasks", function () {
   if (Meteor.isClient) {
@@ -28,22 +13,14 @@ describe("Tasks", function () {
       let taskId;
 
       before(function (done) {
-        const testTask = {
-          text: "test task",
-          owner: "testId",
-          username: "testUsername",
-        };
-
-        testInsertTask.call(testTask, (err, res) => {
-          if (err) {
-            console.log("err:", err);
-            done(err);
-          } else {
-            console.log("result:", res);
-            taskId = res;
+        generateData()
+          .then((val) => {
+            taskId = val;
+            console.log("success:", val);
             done();
-          }
-        });
+          })
+          .catch((reason) => { console.log("error:", reason); });
+        console.log("taskId:", taskId);
       });
 
       it("prevent updating 'completed' of someone else's task", function () {
