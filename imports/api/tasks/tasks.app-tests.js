@@ -5,7 +5,8 @@ import { expect } from "meteor/practicalmeteor:chai";
 import { Meteor } from "meteor/meteor";
 import { ValidatedMethod } from "meteor/mdg:validated-method";
 
-import Tasks, { setCompleted } from "./tasks";
+import Tasks from "./tasks";
+import { setCompleted } from "./methods";
 
 const testInsertTask = new ValidatedMethod({
   name: "test.tasks.insert",
