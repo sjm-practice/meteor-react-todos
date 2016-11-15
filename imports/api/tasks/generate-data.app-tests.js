@@ -20,11 +20,7 @@ Factory.define("task", Tasks, {
 Meteor.methods({
   generateFixtures() {
     Tasks.remove({});
-    console.log("task count:", Tasks.find().count());
-    let taskId = Factory.create("task")._id;
-    console.log("task count:", Tasks.find().count());
-    console.log("new id:", taskId);
-    return taskId;
+    return Factory.create("task")._id;
   },
 });
 

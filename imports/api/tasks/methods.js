@@ -15,7 +15,7 @@ export const insertTask = new ValidatedMethod({
       throw new Meteor.Error("not-authorized");
     }
 
-    Tasks.insert({
+    return Tasks.insert({
       text,
       createdAt: new Date(),
       owner: this.userId,
@@ -33,13 +33,8 @@ export const setCompleted = new ValidatedMethod({
   }).validator(),
 
   run({ taskId, checked }) {
-    if (Meteor.isServer) {
-      console.log("requested id:", taskId);
-    }
     const task = Tasks.findOne(taskId);
-    console.log("task:", task);
     if (!task) {
-      console.log("for real?");
       throw new Meteor.Error("not-found");
     }
 
@@ -47,7 +42,7 @@ export const setCompleted = new ValidatedMethod({
       throw new Meteor.Error("not-authorized");
     }
 
-    Tasks.update(taskId, { $set: { checked } });
+    return Tasks.update(taskId, { $set: { checked } });
   },
 });
 
@@ -68,7 +63,7 @@ export const removeTask = new ValidatedMethod({
       throw new Meteor.Error("not-authorized");
     }
 
-    Tasks.remove(taskId);
+    return Tasks.remove(taskId);
   },
 });
 
@@ -90,6 +85,6 @@ export const setPrivate = new ValidatedMethod({
       throw new Meteor.Error("not-authorized");
     }
 
-    Tasks.update(taskId, { $set: { private: setToPrivate } });
+    return Tasks.update(taskId, { $set: { private: setToPrivate } });
   },
 });

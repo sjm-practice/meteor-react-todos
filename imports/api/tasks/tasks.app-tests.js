@@ -16,15 +16,12 @@ describe("Tasks", function () {
         generateData()
           .then((val) => {
             taskId = val;
-            console.log("success:", val);
             done();
           })
           .catch((reason) => { console.log("error:", reason); });
-        console.log("taskId:", taskId);
       });
 
       it("prevent updating 'completed' of someone else's task", function () {
-        console.log("test called.");
         const context = { userId: "differentUserId" };  // aka this
         const args = { taskId, checked: true };
         expect(() => { setCompleted._execute(context, args); }).to.throw(/not-authorized/);
