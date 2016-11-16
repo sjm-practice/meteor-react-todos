@@ -3,7 +3,6 @@
 
 import { Meteor } from "meteor/meteor";
 import { Factory } from "meteor/dburles:factory";
-import { Promise } from "meteor/promise";
 import Tasks from "./tasks";
 
 export const testOwnerId = "ownerId";
@@ -18,31 +17,8 @@ Factory.define("task", Tasks, {
 });
 
 Meteor.methods({
-  generateFixtures() {
+  generateTaskFixture() {
     Tasks.remove({});
     return Factory.create("task")._id;
   },
 });
-
-const denodeify = f => (...args) => new Promise((resolve, reject) => {
-  f(...args, (err, val) => {
-    if (err) {
-      reject(err);
-    } else {
-      resolve(val);
-    }
-  });
-});
-
-let generateDataExport;
-if (Meteor.isClient) {
-  const testConnection = Meteor.connect(Meteor.absoluteUrl());
-
-  generateDataExport = denodeify((cb) => {
-    testConnection.call("generateFixtures", cb);
-  });
-}
-
-const generateData = generateDataExport;
-
-export { generateData };

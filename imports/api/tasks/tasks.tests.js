@@ -7,8 +7,8 @@ import { Random } from "meteor/random";
 
 import Tasks, { removeTask } from "./tasks";
 
-describe("Tasks", function () {
-  if (Meteor.isServer) {
+if (Meteor.isServer) {
+  describe("Tasks", function () {
     describe("methods", function () {
       const userId = Random.id();
       let taskId;
@@ -42,5 +42,5 @@ describe("Tasks", function () {
         expect(removeTaskMethod.bind(context, args)).to.throw(/not-authorized/);
       });
     });
-  }
-});
+  });
+}
