@@ -6,11 +6,15 @@ import { Meteor } from "meteor/meteor";
 
 import { setCompleted } from "./methods";
 
+// NOTE: many of these tests are to test potential security
+// vulnerabilities, namely those that could be called from
+// the console. see Readme for more explanation.
+
 if (Meteor.isClient) {
   describe("Tasks", function () {
     describe("methods", function () {
       describe("setCompleted", function () {
-        describe("ValidatedMethod", function () {
+        describe("ValidatedMethod ( _execute )", function () {
           let taskId;
 
           before(function (done) {
