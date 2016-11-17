@@ -5,6 +5,7 @@
     "lint": "./node_modules/.bin/eslint . --ignore-pattern 'packages/**'",
     "start": "meteor run",
     "test": "meteor test --driver-package practicalmeteor:mocha",
+    "test-watch": "TEST_WATCH=1 meteor test --driver-package practicalmeteor:mocha",
     "test-phantom": "meteor test --once --driver-package dispatch:mocha-phantomjs",
     "test-phantom-watch": "TEST_WATCH=1 meteor test --driver-package dispatch:mocha-phantomjs",
     "test-app": "meteor test --full-app --driver-package practicalmeteor:mocha"

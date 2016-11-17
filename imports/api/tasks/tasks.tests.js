@@ -1,11 +1,12 @@
 /* eslint-env mocha */
 /* eslint-disable func-names, prefer-arrow-callback */
 
-import { expect } from "meteor/practicalmeteor:chai";
+import { assert } from "meteor/practicalmeteor:chai";
 import { Meteor } from "meteor/meteor";
 import { Random } from "meteor/random";
 
-import Tasks, { removeTask } from "./tasks";
+import Tasks from "./tasks";
+import { removeTask } from "./methods";
 
 if (Meteor.isServer) {
   describe("Tasks", function () {
@@ -30,7 +31,7 @@ if (Meteor.isServer) {
         // NOTE: can execute a ValidatedMethod via _execute (per ValidateMethod docs)
         removeTask._execute(context, args);
 
-        expect(Tasks.find().count()).to.equal(0);
+        assert.equal(Tasks.find().count(), 0);
       });
 
       it("prevent delete of someone else's task", function () {
@@ -39,7 +40,7 @@ if (Meteor.isServer) {
         // NOTE: can use this method handler lookup, or _execute style above
         const removeTaskMethod = Meteor.server.method_handlers["tasks.remove"];
 
-        expect(removeTaskMethod.bind(context, args)).to.throw(/not-authorized/);
+        assert.throws(removeTaskMethod.bind(context, args), /not-authorized/);
       });
     });
   });
