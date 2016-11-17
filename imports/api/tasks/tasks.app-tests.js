@@ -35,6 +35,24 @@ if (Meteor.isClient) {
               setCompleted._execute(context, args);
             }, /not-found/);
           });
+
+          it.skip("(TBD) can't use VM._execute to update someone else's task", function () {
+            // Security test: from the CONSOLE (or test env?), if you have the userId and a taskId
+            // of another user, can you modfiy that task, when not logged in or logged
+            // in as yourself
+            // eslint-disable-next-line
+            const hackedSetCompleted = require("/imports/api/tasks/methods.js").setCompleted;
+
+            const context = { userId: "stolen_userId" };  // aka this
+            const args = { taskId: "stolen_taskId", checked: true };
+            // try turning off throwStubExceptions option, to have method execute even
+            // when the stub / simulation fails on an exception
+            hackedSetCompleted.applyOptions.throwStubExceptions = false;
+
+            assert.throws(() => {
+              setCompleted._execute(context, args);
+            }, Error);  // please throw any error!
+          });
         });
 
         describe("Meteor .call and .apply (circumvent ValidatedMethod)", function () {

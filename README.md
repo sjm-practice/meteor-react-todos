@@ -34,3 +34,6 @@ Coding along with the Meteor React Todos tutorial.
     * also, some exceptions being thrown aren't showing up in the web reporter, which _'may'_ be due to this [issue](https://github.com/practicalmeteor/meteor-mocha/issues/11)
         * see comments there May 19 2016 and later, they mention it is specifically with Meteor methods not being able to be tested
         * the suggestion in comment 9/18/16, is what I figured out through much of my own trial and error (days).
+* (TBD) Potential Security test - see if you could use ValidatedMethod._execute to set the context to some other user's Id and modify a task of theirs
+    * you would need to have the other userId and taskId
+    * a sample test is written (and skipped) in tasks.app-tests.js
