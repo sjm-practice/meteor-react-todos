@@ -27,4 +27,10 @@ Coding along with the Meteor React Todos tutorial.
     * using ValidatedMethod._execute (from test code)
 * Each of the variations that could be used on the client were tested to understand any security vulnerabilities, and have the test fail in the event a code change exposed a vulnerability
 * Each of the server side variations were done to understand behaviour, and test that code if called from the server (make sure that behaviour doesn't change with code changes)
-
+* Had difficulty getting ASSERT to work properly when trying to test a Method.call
+    * asserts were either timing out (even with done) OR not thowing / catching expections
+        * this was due to them being thrown in a callback (outside of it() scope)
+    * found this [forum](https://forums.meteor.com/t/how-to-test-meteor-methods/21710/11) discussion to help come up with a solution
+    * also, some exceptions being thrown aren't showing up in the web reporter, which _'may'_ be due to this [issue](https://github.com/practicalmeteor/meteor-mocha/issues/11)
+        * see comments there May 19 2016 and later, they mention it is specifically with Meteor methods not being able to be tested
+        * the suggestion in comment 9/18/16, is what I figured out through much of my own trial and error (days).
