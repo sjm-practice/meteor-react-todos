@@ -14,6 +14,7 @@ Tasks.schema = new SimpleSchema({
   },
   owner: {
     type: String,
+    regEx: SimpleSchema.RegEx.Id,
   },
   username: {
     type: String,

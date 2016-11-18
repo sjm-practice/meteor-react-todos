@@ -37,3 +37,9 @@ Coding along with the Meteor React Todos tutorial.
 * (TBD) Potential Security test - see if you could use ValidatedMethod._execute to set the context to some other user's Id and modify a task of theirs
     * you would need to have the other userId and taskId
     * a sample test is written (and skipped) in tasks.app-tests.js
+* Wrote some tests (in tasks.tests.js) simply to learn the behavior of SimpleSchema and Factory
+    * for example, is using collection2, it will clean the data and then insert it (it doesn't fail if the object doesn't pass the validation)
+    * when collection2 cleans an object, it modifies the original object (does not create a new copy)
+* TAKE-AWAY: if, in testing, you want to make sure your schemas and test code are up to date, consider explicitly calling validate in the test. that way if it fails, you know you need to update the schema (or Factory definition) needs to be updated
+    * this is a practice of keeping Factory.define in sync with a simple schema defintion, without having to keep Factory in production code (like the Meteor Todos example)
+    
