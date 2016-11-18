@@ -4,13 +4,15 @@
 // import { Factory } from "meteor/factory";
 import React from "react";
 import { shallow } from "enzyme";
-import { assert } from "chai";
+import chai from "chai";
 import Task from "../../../imports/ui/components/Task";
+
+const assert = chai.assert;
 
 describe("<Task />", function () {
   it("should render", function () {
     const task = {
-      username: "testguy",
+      username: "testGuy",
       text: "this test task",
       private: false,
       checked: false,
