@@ -36,7 +36,7 @@ if (Meteor.isClient) {
             }, /not-found/);
           });
 
-          it.skip("(TBD) can't use VM._execute to update someone else's task", function () {
+          it.skip("(TBD) can't use ValidatedMethod._execute to update someone else's task", function () {
             // Security test: from the CONSOLE (or test env?), if you have the userId and a taskId
             // of another user, can you modfiy that task, when not logged in or logged
             // in as yourself

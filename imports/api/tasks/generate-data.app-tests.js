@@ -4,15 +4,13 @@
 import { Meteor } from "meteor/meteor";
 import { Factory } from "meteor/dburles:factory";
 import Tasks from "./tasks";
-
-export const testOwnerId = "ownerId";
-export const testOwnerUsername = "ownerUsername";
+import { Random } from "meteor/random";
 
 Factory.define("task", Tasks, {
   text: "do this test task",
   createdAt: new Date(),
-  owner: testOwnerId,
-  username: testOwnerUsername,
+  owner: Random.id(),
+  username: "testOwnerUsername",
   private: true,
 });
 
