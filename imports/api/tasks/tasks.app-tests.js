@@ -1,7 +1,7 @@
 /* eslint-env mocha */
 /* eslint-disable func-names, prefer-arrow-callback */
 
-import { chai, assert } from "meteor/practicalmeteor:chai";
+import { assert } from "meteor/practicalmeteor:chai";
 import { Meteor } from "meteor/meteor";
 
 import { setCompleted } from "./methods";
