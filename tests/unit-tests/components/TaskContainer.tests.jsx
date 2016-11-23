@@ -10,13 +10,21 @@ import td from "testdouble";
 chai.use(chaiEnzyme());
 
 describe("<TaskContainer />", function () {
+  // NOT VERY USEFUL TESTS
+  //  -just practice with enzyme and testdouble
   let TaskContainer;
+
+  const task = {
+    _id: "test_task_id",
+    username: "testGuy",
+    text: "this test task",
+    private: false,
+    checked: false,
+  };
 
   beforeEach(function () {
     const methods = td.object(["setCompleted", "removeTask", "setPrivate"]);
-
-    td.replace("../../../imports/api/tasks/methods", { methods });
-
+    td.replace("../../../imports/api/tasks/methods", methods);
     TaskContainer = require("../../../imports/ui/containers/TaskContainer").default;
   });
 
@@ -25,20 +33,12 @@ describe("<TaskContainer />", function () {
   });
 
   it("should render the <Task /> component", function () {
-    const task = {
-      _id: "test_task_id",
-      username: "testGuy",
-      text: "this test task",
-      private: false,
-      checked: false,
-    };
-
     const wrapper = shallow(<TaskContainer task={task} showPrivateButton={false} />);
-
     expect(wrapper.find("Task")).to.have.prop("task").deep.equal(task);
   });
 
-  it("should update status when checked", function () {
-    // follow guide testing example
+  it("should call setCompleted method when clicked", function () {
+    TaskContainer.handleToggleChecked;
+    // TODO td.verify(setCompleted);
   });
 });
