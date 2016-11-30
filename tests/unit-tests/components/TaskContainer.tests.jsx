@@ -2,12 +2,14 @@
 /* eslint-disable func-names, prefer-arrow-callback, global-require */
 
 import React from "react";
-import { shallow } from "enzyme";
+import { mount, shallow } from "enzyme";
 import chai, { expect } from "chai";
 import chaiEnzyme from "chai-enzyme";
 import td from "testdouble";
+import tdChai from "testdouble-chai";
 
 chai.use(chaiEnzyme());
+chai.use(tdChai(td));
 
 describe("<TaskContainer />", function () {
   // NOT VERY USEFUL TESTS
@@ -22,9 +24,12 @@ describe("<TaskContainer />", function () {
     checked: false,
   };
 
+  const setCompleted = td.object(["call"]);
+  const removeTask = td.object(["call"]);
+  const setPrivate = td.object(["call"]);
+
   beforeEach(function () {
-    const methods = td.object(["setCompleted", "removeTask", "setPrivate"]);
-    td.replace("../../../imports/api/tasks/methods", methods);
+    td.replace("../../../imports/api/tasks/methods", { setCompleted, removeTask, setPrivate });
     TaskContainer = require("../../../imports/ui/containers/TaskContainer").default;
   });
 
@@ -37,8 +42,13 @@ describe("<TaskContainer />", function () {
     expect(wrapper.find("Task")).to.have.prop("task").deep.equal(task);
   });
 
-  it("should call setCompleted method when clicked", function () {
-    TaskContainer.handleToggleChecked;
-    // TODO td.verify(setCompleted);
+  it("should call setCompleted method when clicking task", function () {
+    const wrapper = mount(<TaskContainer task={task} showPrivateButton={false} />);
+    wrapper.find("input[type='checkbox']").simulate("click");
+
+    const methodArg = { taskId: task._id, checked: !task.checked };
+    const methodCallBack = td.matchers.isA(Function);
+
+    expect(setCompleted.call).to.have.been.calledWith(methodArg, methodCallBack);
   });
 });
