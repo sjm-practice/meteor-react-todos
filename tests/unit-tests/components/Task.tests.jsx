@@ -1,14 +1,16 @@
 /* eslint-env mocha */
-/* eslint-disable func-names, prefer-arrow-callback */
+/* eslint-disable func-names, prefer-arrow-callback, no-unused-expressions */
 
 import React from "react";
 import { shallow } from "enzyme";
 import chai, { expect } from "chai";
 import chaiEnzyme from "chai-enzyme";
 import td from "testdouble";
+import tdChai from "testdouble-chai";
 import Task from "../../../imports/ui/components/Task";
 
 chai.use(chaiEnzyme());
+chai.use(tdChai(td));
 
 describe("<Task />", function () {
   // NOT VERY USEFUL TESTS
@@ -53,5 +55,6 @@ describe("<Task />", function () {
   it("should update status when checked", function () {
     wrapper.find("input[type='checkbox']").simulate("click");
     td.verify(handleToggleCheckedStub());
+    expect(handleToggleCheckedStub).to.have.been.called; // same as td.verify (using tdChai)
   });
 });
