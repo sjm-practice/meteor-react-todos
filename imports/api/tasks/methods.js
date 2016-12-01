@@ -1,28 +1,21 @@
-import { Mongo } from "meteor/mongo";
 import { Meteor } from "meteor/meteor";
 import { SimpleSchema } from "meteor/aldeed:simple-schema";
 import { ValidatedMethod } from "meteor/mdg:validated-method";
+import Tasks from "./tasks";
 
-const Tasks = new Mongo.Collection("tasks");
-export default Tasks;
+// Providing method definitions on both client and server, supports optimistic UI updates
 
 export const insertTask = new ValidatedMethod({
   name: "tasks.insert",
 
-  validate: new SimpleSchema({
-    text: {
-      type: String,
-      label: "Text",
-      max: 200,
-    },
-  }).validator(),
+  validate: Tasks.schema.pick(["text"]).validator(),
 
   run({ text }) {
     if (!this.userId) {
       throw new Meteor.Error("not-authorized");
     }
 
-    Tasks.insert({
+    return Tasks.insert({
       text,
       createdAt: new Date(),
       owner: this.userId,
@@ -36,21 +29,24 @@ export const setCompleted = new ValidatedMethod({
 
   validate: new SimpleSchema({
     taskId: { type: String },
-    setChecked: { type: Boolean },
+    checked: { type: Boolean }, // NOTE 'checked' not optional here, unlike schema
   }).validator(),
 
-  run({ taskId, setChecked }) {
+  run({ taskId, checked }) {
     const task = Tasks.findOne(taskId);
+    if (!task) {
+      throw new Meteor.Error("not-found");
+    }
+
     if (task.private && task.owner !== this.userId) {
       throw new Meteor.Error("not-authorized");
     }
 
-    Tasks.update(taskId, { $set: { checked: setChecked } });
+    return Tasks.update(taskId, { $set: { checked } });
   },
 });
 
-// Providing methods definition on both client and server, supports optimistic UI updates
-export const remove = new ValidatedMethod({
+export const removeTask = new ValidatedMethod({
   name: "tasks.remove",
 
   validate: new SimpleSchema({
@@ -59,12 +55,15 @@ export const remove = new ValidatedMethod({
 
   run({ taskId }) {
     const task = Tasks.findOne(taskId);
-    console.log("found:", task);
+    if (!task) {
+      throw new Meteor.Error("not-found");
+    }
+
     if (task.private && task.owner !== this.userId) {
       throw new Meteor.Error("not-authorized");
     }
 
-  Tasks.remove(taskId);
+    return Tasks.remove(taskId);
   },
 });
 
@@ -78,11 +77,14 @@ export const setPrivate = new ValidatedMethod({
 
   run({ taskId, setToPrivate }) {
     const task = Tasks.findOne(taskId);
+    if (!task) {
+      throw new Meteor.Error("not-found");
+    }
 
     if (task.owner !== this.userId) {
       throw new Meteor.Error("not-authorized");
     }
 
-    Tasks.update(taskId, { $set: { private: setToPrivate } });
+    return Tasks.update(taskId, { $set: { private: setToPrivate } });
   },
 });

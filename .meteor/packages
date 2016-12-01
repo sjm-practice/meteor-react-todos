@@ -19,7 +19,12 @@ shell-server@0.2.1            # Server-side component of the `meteor shell` comm
 
 ultimatejs:tracker-react
 blaze-html-templates
-accounts-ui
-accounts-password
+accounts-ui@1.1.9
+accounts-password@1.3.2
 mdg:validated-method
 aldeed:simple-schema
+practicalmeteor:mocha
+dispatch:mocha-phantomjs
+aldeed:collection2
+dburles:factory
+promise

@@ -3,13 +3,13 @@ import React, {
   PropTypes,
 } from "react";
 
-import { setCompleted, remove, setPrivate } from "../../api/collections/tasks";
+import { setCompleted, removeTask, setPrivate } from "../../api/tasks/methods";
 
 import Task from "../components/Task";
 
 class TaskContainer extends Component {
   handleToggleChecked() {
-    setCompleted.call({ taskId: this.props.task._id, setChecked: !this.props.task.checked },
+    setCompleted.call({ taskId: this.props.task._id, checked: !this.props.task.checked },
       (err) => {
         if (err) {
           alert(err);
@@ -18,7 +18,7 @@ class TaskContainer extends Component {
   }
 
   handleDeleteTask() {
-    remove.call({ taskId: this.props.task._id }, (err) => {
+    removeTask.call({ taskId: this.props.task._id }, (err) => {
       if (err) {
         alert(err);
       }
