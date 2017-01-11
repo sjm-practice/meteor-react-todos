@@ -7,7 +7,7 @@ import chai, { expect } from "chai";
 import chaiEnzyme from "chai-enzyme";
 import td from "testdouble";
 import tdChai from "testdouble-chai";
-import Task from "../../../imports/ui/components/Task";
+import Task from "./Task";
 
 chai.use(chaiEnzyme());
 chai.use(tdChai(td));

@@ -30,7 +30,7 @@ describe("<TaskContainer />", function () {
 
   beforeEach(function () {
     td.replace("../../../imports/api/tasks/methods", { setCompleted, removeTask, setPrivate });
-    TaskContainer = require("../../../imports/ui/containers/TaskContainer").default;
+    TaskContainer = require("TaskContainer").default;
   });
 
   afterEach(function () {
