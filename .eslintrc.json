@@ -26,7 +26,8 @@
     "import/core-modules": [
       "meteor/meteor",
       "meteor/accounts-base",
-      "meteor/mongo"
+      "meteor/mongo",
+      "meteor/practicalmeteor:chai"
     ]
   },
   "rules": {
