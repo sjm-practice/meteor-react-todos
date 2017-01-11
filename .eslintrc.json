@@ -27,7 +27,9 @@
       "meteor/meteor",
       "meteor/accounts-base",
       "meteor/mongo",
-      "meteor/practicalmeteor:chai"
+      "meteor/practicalmeteor:chai",
+      "meteor/dburles:factory",
+      "meteor/random"
     ]
   },
   "rules": {
@@ -38,7 +40,8 @@
     "react/no-danger": "warn",
     "react/react-in-jsx-scope": "off",
     "meteor/eventmap-params": ["error", { "templateInstanceParamName": "instance" }],
-    "import/no-unresolved": ["error", { "ignore": ["^meteor/"] }]
+    "import/no-unresolved": ["error", { "ignore": ["^meteor/"] }],
+    "import/no-extraneous-dependencies": "off"
   },
   "globals": {
     "alert": true,

@@ -67,7 +67,7 @@ if (Meteor.isServer) {
           const context = { userId };
           const args = { taskId };
           // NOTE: can execute a ValidatedMethod via _execute (per ValidateMethod docs)
-          removeTask._execute(context, args);
+          removeTask._execute(context, args); // eslint-disable-line no-underscore-dangle
 
           assert.equal(Tasks.find().count(), 0);
         });
