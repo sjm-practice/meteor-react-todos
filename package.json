@@ -2,7 +2,7 @@
   "name": "meteor-react-todos",
   "private": true,
   "scripts": {
-    "lint": "./node_modules/.bin/eslint . --ext .js,.jsx --ignore-pattern 'packages/**'",
+    "lint": "./node_modules/.bin/eslint . --ext .js,.jsx",
     "start": "meteor run",
     "test": "npm run unit-test && npm run integration-test-phantom",
     "unit-test": "./node_modules/.bin/jest -c .jestrc.json",

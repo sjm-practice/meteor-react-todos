@@ -1,0 +1,2 @@
+# include test files that begin with a . (ie, .AppContainer.tests.jsx)
+!.*.test*.js*

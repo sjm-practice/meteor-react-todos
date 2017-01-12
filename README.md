@@ -14,6 +14,29 @@ Coding along with the Meteor React Todos tutorial.
 * NOTE: had initially coded the completed checkbox to be a controlled component, but this had a defect. The tutorial had this as an uncontrolled component, and directly manipulating the control (produces a react warning). I switch to the tutorial method, which is less code, and functions as intended/expected, but I believe breaks react coding paradigm. May research this further and correct down the road.
  
  
- ## Testing
- * Ran in to some issues while writing tests, and identified some practices I'd like to follow for other projects
-    * I have those notes on testing [here](https://gist.github.com/stevenjmarsh/26a1e5b703f19e5b70db377154feff8f)
+## Testing
+### Notes
+* The intention is to be able to use...
+    + 'jest / enzyme' for unit testing
+    + 'meteor test' for complex integration testing
+    + 'chimp' for end to end testing
+    
+### Test Runner File Naming Conventions
+* Default test file naming conventions for Meteor and Jest
+    + [jest](http://facebook.github.io/jest/docs/configuration.html#testregex-string): `(/__tests__/.*|(\\.|/)(test|spec))\\.jsx?$)`
+    + ['meteor test'](https://guide.meteor.com/testing.html#test-modes):  `"*.test[s].js[x]"` or `"*.spec[s].js[x]"`
+    + ['meteor test --full-app'](https://guide.meteor.com/testing.html#test-modes): `"*.app-test[s].js"` or `"*.app-spec[s].js"`
+    + **NOTE:** meteor test and build ignore files prepended with '.'
+    + **NOTE:** eslint by default ignores files prepended with '.'
+        - to lint such files, include `!.*.test*.js*` in a [.eslintignore file or --ignore-pattern option](http://eslint.org/docs/user-guide/configuring#ignoring-files-and-directories)
+* The following convention allows you to keep all test file types in the same directory, without the test runners picking up the incorrect test file
+    + `"*.js[x]"` (source, used in meteor build)
+    + `".*.test.js[x]"` (tests run by jest only)
+    + `"*.tests.js[x]"` (tests run by 'meteor test' only)
+    + `"*.app-tests.js[x]"` (tests run by 'meteor test --full-app' only)
+* example:
+    + `AppContainer.jsx` (source, used in meteor build)
+    + `.AppContainer.test.jsx` (tests run by jest only)
+    + `AppContainer.tests.jsx` (tests run by 'meteor test' only)
+    + `calledMethods.app-tests.js` (tests run by 'meteor test --full-app' only)
+* You can easily adjust the [regex for jest test filenames](http://facebook.github.io/jest/docs/configuration.html#testregex-string) via jest configuration, but I did not see an easy to do so for 'meteor test' files
