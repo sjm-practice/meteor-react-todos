@@ -3,7 +3,7 @@
 
 import React from "react";
 import { shallow } from "enzyme";
-import Task from "./Task";
+import Task from "../Task";
 
 describe("<Task />", function () {
   // NOT REAL USEFUL TESTS

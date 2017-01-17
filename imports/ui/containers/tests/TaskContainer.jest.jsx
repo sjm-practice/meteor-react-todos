@@ -8,7 +8,7 @@ import { mount, shallow } from "enzyme";
 
 jest.mock("../../api/tasks/methods.js");
 // import TaskContainer from "./TaskContainer";
-let  TaskContainer = require("./TaskContainer").default;
+let  TaskContainer = require("../TaskContainer").default;
 
 describe("<TaskContainer />", function () {
   // NOT VERY USEFUL TESTS
