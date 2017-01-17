@@ -31,7 +31,7 @@ Coding along with the Meteor React Todos tutorial.
  * The following convention allows you to keep all test file types in the same or an adjacent directory of the system under test, without the test runners picking up the incorrect test file
     + place all meteor test files in the same directory as the module / system under test
     + place all jest unit tests in 'tests' sub directory of the module / system under test
-        - [OPTIONAL] set [jest test filenames (testRegex)](http://facebook.github.io/jest/docs/configuration.html#testregex-string) to `(/__tests__/.*|(\\.|/)(test|spec|jest))\\.jsx?$)`
+        - [OPTIONAL] set [jest test filenames (testRegex)](http://facebook.github.io/jest/docs/configuration.html#testregex-string) to `(/__tests__/.*|(\\.|/)(test|spec|jest))\\.jsx?$`
     + place all chimp tests in 'tests' sub directory of the project root
         - NOTE: create additional sub directories in this directory to organize tests
 * example:
