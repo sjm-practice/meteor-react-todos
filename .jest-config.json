@@ -1,5 +1,6 @@
 {
   "bail": true,
   "verbose": true,
-  "testPathIgnorePatterns": ["/node_modules/", "/.meteor/", "/public/"]
+  "testPathIgnorePatterns": ["/node_modules/", "/.meteor/", "/public/"],
+  "testRegex": "(/__tests__/.*|(\\.|/)(test|spec|jest))\\.jsx?$"
 }
