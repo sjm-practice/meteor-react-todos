@@ -29,16 +29,16 @@ Coding along with the Meteor React Todos tutorial.
 * [jest](http://facebook.github.io/jest/docs/configuration.html#testregex-string): `(/__tests__/.*|(\\.|/)(test|spec))\\.jsx?$)`
 #### Project test file naming convention
  * The following convention allows you to keep all test file types in the same or an adjacent directory of the system under test, without the test runners picking up the incorrect test file
-    + set [jest test filenames (testRegex)](http://facebook.github.io/jest/docs/configuration.html#testregex-string) to `(/__tests__/.*|(\\.|/)(test|spec|jest))\\.jsx?$)`
-    + place all meteor test files in the same directory as the system under test directory
-    + place all jest unit tests in a 'tests' sub directory of the system under test directory
-    + place all chimp tests in a 'tests' directory in the project root directory
-        - NOTE: create subdirectories in this directory to organize tests
+    + place all meteor test files in the same directory as the module / system under test
+    + place all jest unit tests in 'tests' sub directory of the module / system under test
+        - [OPTIONAL] set [jest test filenames (testRegex)](http://facebook.github.io/jest/docs/configuration.html#testregex-string) to `(/__tests__/.*|(\\.|/)(test|spec|jest))\\.jsx?$)`
+    + place all chimp tests in 'tests' sub directory of the project root
+        - NOTE: create additional sub directories in this directory to organize tests
 * example:
-    + `<project-root>/.../system-under-test/tests/.AppContainer.jest.jsx` (tests run by __jest__ only)
+    + `<project-root>/.../system-under-test/tests/AppContainer.jest.jsx` (tests run by __jest__ only)
     + `<project-root>/.../system-under-test/AppContainer.tests.jsx` (tests run by __'meteor test'__ only)
     + `<project-root>/tests/calledMethods.app-tests.js` (tests run by __'meteor test --full-app'__ only)
-### Mocking Notes
+### Notes on Mocking
 #### Mocking Meteor packages
 * [jest issue / question (way to mock Meteor packages)](https://github.com/facebook/jest/issues/1388)
 * [Meteor Forum, mocking Meteor package imports in jest](https://forums.meteor.com/t/mocking-meteor-package-imports-in-jest/27780/2)
