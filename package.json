@@ -5,7 +5,7 @@
     "lint": "./node_modules/.bin/eslint . --ext .js,.jsx",
     "start": "meteor run",
     "test": "npm run unit-test && npm run integration-test-phantom",
-    "unit-test": "./node_modules/.bin/jest -c .jestrc.json",
+    "unit-test": "./node_modules/.bin/jest -c .jest-config.json",
     "unit-test-w": "npm run unit-test -- --watchAll",
     "integration-test": "meteor test --driver-package practicalmeteor:mocha",
     "integration-test-w": "TEST_WATCH=1 meteor test --driver-package practicalmeteor:mocha",
