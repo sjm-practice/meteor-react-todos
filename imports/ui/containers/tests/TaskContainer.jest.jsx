@@ -53,4 +53,24 @@ describe("<TaskContainer />", function () {
 
     expect(setCompleted.call).toHaveBeenCalledWith(methodArg, methodCallBack);
   });
+
+  it("should call removeTask method when clicking delete", function () {
+    const wrapper = mount(<TaskContainer task={task} showPrivateButton={false} />);
+    wrapper.find("button.delete").simulate("click");
+
+    const methodArg = { taskId: task._id };
+    const methodCallBack = expect.any(Function);
+
+    expect(removeTask.call).toHaveBeenCalledWith(methodArg, methodCallBack);
+  });
+
+  it("should call setPrivate method when clicking private button", function () {
+    const wrapper = mount(<TaskContainer task={task} showPrivateButton />);
+    wrapper.find("button.toggle-private").simulate("click");
+
+    const methodArg = { taskId: task._id, setToPrivate: !task.private };
+    const methodCallBack = expect.any(Function);
+
+    expect(setPrivate.call).toHaveBeenCalledWith(methodArg, methodCallBack);
+  });
 });

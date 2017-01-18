@@ -22,11 +22,11 @@ const Task = (props) => {
         onClick={props.onToggleCheckedTask}
       />
 
-      { props.showPrivateButton ? (
-        <button className="toggle-private" onClick={props.onTogglePrivate}>
+      { props.showPrivateButton ?
+        (<button className="toggle-private" onClick={props.onTogglePrivate}>
           { props.task.private ? "Private" : "Public" }
-        </button>
-      ) : ""}
+        </button>) : ""
+      }
 
       <span className="text">
         <strong>{props.task.username}</strong>: {props.task.text}
