@@ -37,6 +37,7 @@ describe("<Task />", function () {
     expect(wrapper.hasClass("private")).toBe(false);
     expect(wrapper.find("button.delete").length).toEqual(1);
     expect(wrapper.find("button.toggle-private").length).toEqual(0);
+    expect(wrapper.find("span.text").text()).toEqual(`${task.username}: ${task.text}`);
   });
 
   it("should update status when checked", function () {

@@ -22,7 +22,7 @@ import TaskContainer from "../TaskContainer";
 import { setCompleted, removeTask, setPrivate } from "../../../api/tasks/methods";
 
 describe("<TaskContainer />", function () {
-  // NOT VERY USEFUL TESTS
+  // NOT VERY USEFUL TESTS, or over exaggerated
   //  -just practice with jest expect, mock and enzyme
 
   const task = {
@@ -39,6 +39,8 @@ describe("<TaskContainer />", function () {
 
   it("should render the <Task /> component", function () {
     const wrapper = shallow(<TaskContainer task={task} showPrivateButton={false} />);
+
+    // testing some simple aspects of the container
     expect(wrapper.prop("task")).toEqual(task);
     expect(wrapper.prop("showPrivateButton")).toEqual(false);
     expect(wrapper.find("Task").length).toEqual(1);
