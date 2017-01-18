@@ -46,5 +46,6 @@ Coding along with the Meteor React Todos tutorial.
 
 #### Mocking Meteor packages
 * [jest issue / question (way to mock Meteor packages)](https://github.com/facebook/jest/issues/1388)
-* [Meteor Forum, mocking Meteor package imports in jest](https://forums.meteor.com/t/mocking-meteor-package-imports-in-jest/27780/2)
+* [Meteor Forum, mocking Meteor package imports in jest (with example)](https://forums.meteor.com/t/mocking-meteor-package-imports-in-jest/27780/2)
 * [jest configuration docs, moduleNameMapper](http://facebook.github.io/jest/docs/configuration.html#modulenamemapper-object-string-string)
+* [example jest meteor mocks (usable samples)](https://github.com/Astrocoders/jest-meteor-mocks)
