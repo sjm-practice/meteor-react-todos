@@ -4,24 +4,22 @@
 import React from "react";
 import { mount, shallow } from "enzyme";
 
-const methods = {
-  setCompleted: {
-    call: jest.fn(),
-  },
-  removeTask: {
-    call: jest.fn(),
-  },
-  setPrivate: {
-    call: jest.fn(),
-  },
-};
-
-jest.mock("../../../api/tasks/methods.js", () => {
-  return methods;
-}
+jest.mock("../../../api/tasks/methods.js", () =>
+  ({
+    setCompleted: {
+      call: jest.fn(),
+    },
+    removeTask: {
+      call: jest.fn(),
+    },
+    setPrivate: {
+      call: jest.fn(),
+    },
+  })
 );
 
 import TaskContainer from "../TaskContainer";
+import { setCompleted, removeTask, setPrivate } from "../../../api/tasks/methods";
 
 describe("<TaskContainer />", function () {
   // NOT VERY USEFUL TESTS
@@ -51,9 +49,8 @@ describe("<TaskContainer />", function () {
     wrapper.find("input[type='checkbox']").simulate("click");
 
     const methodArg = { taskId: task._id, checked: !task.checked };
-    // const methodCallBack = td.matchers.isA(Function);
+    const methodCallBack = expect.any(Function);
 
-    expect(setCompleted.call).to.have.been.calledWith(methodArg, methodCallBack);
-    // expect(setCompleted.call).to.have.been.calledWith(methodArg, methodCallBack);
+    expect(setCompleted.call).toHaveBeenCalledWith(methodArg, methodCallBack);
   });
 });
