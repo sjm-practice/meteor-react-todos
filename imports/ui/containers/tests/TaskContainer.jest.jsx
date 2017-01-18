@@ -41,7 +41,7 @@ describe("<TaskContainer />", function () {
     const wrapper = shallow(<TaskContainer task={task} showPrivateButton={false} />);
     expect(wrapper.prop("task")).toEqual(task);
     expect(wrapper.prop("showPrivateButton")).toEqual(false);
-    // TODO  - check task is rendered correctly (ie no private button)
+    expect(wrapper.find("Task").length).toEqual(1);
   });
 
   it("should call setCompleted method when clicking task", function () {
