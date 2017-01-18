@@ -1,6 +1,9 @@
 {
   "bail": true,
   "verbose": true,
+  "moduleNameMapper": {
+    "^meteor/meteor$": "<rootDir>/tests/jest-meteor-stubs/meteor.js"
+  },
   "testPathIgnorePatterns": ["/node_modules/", "/.meteor/", "/public/"],
   "testRegex": "(/__tests__/.*|(\\.|/)(test|spec|jest))\\.jsx?$"
 }

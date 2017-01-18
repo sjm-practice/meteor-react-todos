@@ -1,6 +1,6 @@
 import React from "react";
 
-import { Meteor } from "meteor/meteor"; // eslint-disable-line import/extensions
+import { Meteor } from "meteor/meteor";
 import TrackerContainerComponent from "./TrackerContainerComponent";
 
 import Tasks from "../../api/tasks/tasks";
