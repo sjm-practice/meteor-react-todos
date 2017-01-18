@@ -1,14 +1,27 @@
 /* eslint-env jest */
-/* eslint-disable func-names, prefer-arrow-callback, global-require */
+/* eslint-disable func-names, prefer-arrow-callback, global-require, import/imports-first */
 
 import React from "react";
 import { mount, shallow } from "enzyme";
 
-// import THis from "../../api/tasks/methods";
+const methods = {
+  setCompleted: {
+    call: jest.fn(),
+  },
+  removeTask: {
+    call: jest.fn(),
+  },
+  setPrivate: {
+    call: jest.fn(),
+  },
+};
 
-jest.mock("../../api/tasks/methods.js");
-// import TaskContainer from "./TaskContainer";
-let  TaskContainer = require("../TaskContainer").default;
+jest.mock("../../../api/tasks/methods.js", () => {
+  return methods;
+}
+);
+
+import TaskContainer from "../TaskContainer";
 
 describe("<TaskContainer />", function () {
   // NOT VERY USEFUL TESTS
@@ -22,31 +35,25 @@ describe("<TaskContainer />", function () {
     checked: false,
   };
 
-  // const setCompleted = td.object(["call"]);
-  // const removeTask = td.object(["call"]);
-  // const setPrivate = td.object(["call"]);
-
-  // beforeEach(function () {
-  //   td.replace("../../../imports/api/tasks/methods", { setCompleted, removeTask, setPrivate });
-  // });
-
-  // afterEach(function () {
-  //   td.reset();
-  // });
+  afterAll(function () {
+    jest.resetModules();
+  });
 
   it("should render the <Task /> component", function () {
     const wrapper = shallow(<TaskContainer task={task} showPrivateButton={false} />);
     expect(wrapper.prop("task")).toEqual(task);
-    expect(wrapper.prop("showPrivateButton")).toEqual(true);
+    expect(wrapper.prop("showPrivateButton")).toEqual(false);
+    // TODO  - check task is rendered correctly (ie no private button)
   });
 
-  // it("should call setCompleted method when clicking task", function () {
-  //   const wrapper = mount(<TaskContainer task={task} showPrivateButton={false} />);
-  //   wrapper.find("input[type='checkbox']").simulate("click");
-  //
-  //   const methodArg = { taskId: task._id, checked: !task.checked };
-  //   const methodCallBack = td.matchers.isA(Function);
-  //
-  //   expect(setCompleted.call).to.have.been.calledWith(methodArg, methodCallBack);
-  // });
+  it("should call setCompleted method when clicking task", function () {
+    const wrapper = mount(<TaskContainer task={task} showPrivateButton={false} />);
+    wrapper.find("input[type='checkbox']").simulate("click");
+
+    const methodArg = { taskId: task._id, checked: !task.checked };
+    // const methodCallBack = td.matchers.isA(Function);
+
+    expect(setCompleted.call).to.have.been.calledWith(methodArg, methodCallBack);
+    // expect(setCompleted.call).to.have.been.calledWith(methodArg, methodCallBack);
+  });
 });
