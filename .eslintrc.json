@@ -29,14 +29,16 @@
       "meteor/mongo",
       "meteor/practicalmeteor:chai",
       "meteor/dburles:factory",
-      "meteor/random"
+      "meteor/random",
+      "meteor/aldeed:simple-schema",
+      "meteor/mdg:validated-method"
     ]
   },
   "rules": {
     "semi": "error",
     "no-console": "warn",
     "quotes": ["error", "double", { "avoidEscape": true, "allowTemplateLiterals": true }],
-    "no-underscore-dangle": ["error", { "allow": ["_id"]}],
+    "no-underscore-dangle": ["error", { "allow": ["_id", "_execute"]}],
     "react/no-danger": "warn",
     "react/react-in-jsx-scope": "off",
     "meteor/eventmap-params": ["error", { "templateInstanceParamName": "instance" }],

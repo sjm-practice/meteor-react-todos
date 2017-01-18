@@ -3,8 +3,8 @@
 
 import { Meteor } from "meteor/meteor";
 import { Factory } from "meteor/dburles:factory";
-import Tasks from "./tasks";
 import { Random } from "meteor/random";
+import Tasks from "./tasks";
 
 Factory.define("task", Tasks, {
   text: "do this test task",
