@@ -1,12 +1,19 @@
 /* eslint-env jest */
 
-module.exports = {
-  Meteor: {
-    Error: jest.fn(),
-    methods: jest.fn(),
-    call: jest.fn(),
-    apply: jest.fn(),
-    publish: jest.fn(),
-    subscribe: jest.fn(),
-  },
+const Meteor = {
+  loginWithPassword: jest.fn(),
+  loginWithFacebook: jest.fn(),
+  methods: jest.fn(),
+  call: jest.fn(),
+  apply: jest.fn(),
+  subscribe: jest.fn(),
+  publish: jest.fn(),
+  isClient: true,
+  isServer: false,
+  wrapAsync: jest.fn(() => jest.fn(() => {
+  })),
+  Error,
+  userId: jest.fn(),
 };
+
+module.exports = { Meteor };

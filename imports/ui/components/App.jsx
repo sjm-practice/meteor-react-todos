@@ -2,8 +2,8 @@ import React, {
   PropTypes,
 } from "react";
 
-import TaskContainer from "../containers/TaskContainer";
 import AccountsUIWrapper from "./AccountsUIWrapper";
+import TaskContainer from "../containers/TaskContainer";
 
 const App = (props) => {
   let filteredTasks = props.tasks;

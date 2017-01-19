@@ -18,8 +18,8 @@ jest.mock("../../../api/tasks/methods.js", () =>
   })
 );
 
-import TaskContainer from "../TaskContainer";
 import { setCompleted, removeTask, setPrivate } from "../../../api/tasks/methods";
+import TaskContainer from "../TaskContainer";
 
 describe("<TaskContainer />", function () {
   // NOT VERY USEFUL TESTS, or over exaggerated
@@ -32,10 +32,6 @@ describe("<TaskContainer />", function () {
     private: false,
     checked: false,
   };
-
-  afterAll(function () {
-    jest.resetModules();
-  });
 
   it("should render the <Task /> component", function () {
     const wrapper = shallow(<TaskContainer task={task} showPrivateButton={false} />);

@@ -1,5 +1,4 @@
 {
-  "bail": true,
   "verbose": true,
   "moduleNameMapper": {
     "^meteor/(.*)$": "<rootDir>/tests/jest-meteor-stubs/$1.js"
