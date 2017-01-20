@@ -43,7 +43,8 @@ Coding along with the Meteor React Todos tutorial.
     + `<project-root>/tests/calledMethods.app-tests.js` (tests run by __'meteor test --full-app'__ only)
 
 ### Notes on Mocking
-
+* TODO add notes on created meteor mocks
+    + especially simple-schema, handling new & pick
 #### Mocking Meteor packages
 * [jest issue / question (way to mock Meteor packages)](https://github.com/facebook/jest/issues/1388)
 * [Meteor Forum, mocking Meteor package imports in jest (with example)](https://forums.meteor.com/t/mocking-meteor-package-imports-in-jest/27780/2)
