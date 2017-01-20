@@ -42,11 +42,12 @@ Coding along with the Meteor React Todos tutorial.
     + `<project-root>/.../system-under-test/AppContainer.tests.jsx` (tests run by __'meteor test'__ only)
     + `<project-root>/tests/calledMethods.app-tests.js` (tests run by __'meteor test --full-app'__ only)
 
-### Notes on Mocking
-* TODO add notes on created meteor mocks
-    + especially simple-schema, handling new & pick
-#### Mocking Meteor packages
-* [jest issue / question (way to mock Meteor packages)](https://github.com/facebook/jest/issues/1388)
-* [Meteor Forum, mocking Meteor package imports in jest (with example)](https://forums.meteor.com/t/mocking-meteor-package-imports-in-jest/27780/2)
-* [jest configuration docs, moduleNameMapper](http://facebook.github.io/jest/docs/configuration.html#modulenamemapper-object-string-string)
-* [example jest meteor mocks (usable samples)](https://github.com/Astrocoders/jest-meteor-mocks)
+### Mocking Meteor packages
+* Many commonly used meteor packages were mocked, by creating mock modules, and using the moduleNameMapper configuration setting
+    + some details and light exmaples can be seen on this [meteor forum discussion](https://forums.meteor.com/t/mocking-meteor-package-imports-in-jest/27780/9)
+* Other helpful meteor mocking resources
+    + [jest configuration docs, moduleNameMapper](http://facebook.github.io/jest/docs/configuration.html#modulenamemapper-object-string-string)
+    + [example jest meteor mocks (some usable examples)](https://github.com/Astrocoders/jest-meteor-mocks)
+* One specific, complex example, was mocking SimpleSchema. It took some effort, and trial and error, to mimic being able to reference a returned function from an inline instantiated object
+    + eg  `const myValidator = new SimpleSchema({...}).validator();`
+    + see the aldeed:simple-schema.js mock for validator() 
