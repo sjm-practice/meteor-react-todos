@@ -3,22 +3,6 @@
 
 import React from "react";
 import { shallow } from "enzyme";
-
-// TODO - figure out why we need to mock here (mdg:validated-methods stub should work instead)
-jest.mock("../../../api/tasks/methods.js", () =>
-  ({
-    setCompleted: {
-      call: jest.fn(),
-    },
-    removeTask: {
-      call: jest.fn(),
-    },
-    setPrivate: {
-      call: jest.fn(),
-    },
-  })
-);
-
 import App from "../App";
 
 describe("<App />", function () {

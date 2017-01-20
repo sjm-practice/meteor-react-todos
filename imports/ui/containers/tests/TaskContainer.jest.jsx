@@ -3,21 +3,6 @@
 
 import React from "react";
 import { mount, shallow } from "enzyme";
-
-jest.mock("../../../api/tasks/methods.js", () =>
-  ({
-    setCompleted: {
-      call: jest.fn(),
-    },
-    removeTask: {
-      call: jest.fn(),
-    },
-    setPrivate: {
-      call: jest.fn(),
-    },
-  })
-);
-
 import { setCompleted, removeTask, setPrivate } from "../../../api/tasks/methods";
 import TaskContainer from "../TaskContainer";
 
@@ -32,6 +17,8 @@ describe("<TaskContainer />", function () {
     private: false,
     checked: false,
   };
+
+  // TODO - investigate adding mock reset after each test
 
   it("should render the <Task /> component", function () {
     const wrapper = shallow(<TaskContainer task={task} showPrivateButton={false} />);
